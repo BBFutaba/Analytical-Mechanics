@@ -1,0 +1,227 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{latexsym, epsfig, ulem, cancel, multicol, hyperref}
+\usepackage{graphicx, tikz, subfigure,pgfplots}
+\usepackage{blindtext}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parindent}{0pt}
+\usepackage{multirow}
+\usepackage{mathtools}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{multirow, multicol}
+\usepackage{tikz}
+\usepackage{comment}
+
+\setlength{\parskip}{1ex}
+
+\newcommand{\T}[0]{\top}
+\newcommand{\F}[0]{\bot}
+\newcommand{\liminfty}[1]{\lim_{#1 \to \infty}}
+\newcommand{\limzero}[1]{\lim_{#1 \to 0}}
+\newcommand{\limto}[1]{\lim_{#1}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\odd}[0]{\mathbb{Z} - 2\mathbb{Z}}
+\newcommand{\lineint}[1]{\int_{#1}}
+\newcommand{\pypx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\divg}{\nabla \cdot}
+\newcommand{\curl}{\nabla \times}
+\newcommand{\dydx}[2]{\frac{d #1}{d #2}}
+\newcommand{\sqbkt}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\tribkt}[1]{\left< #1 \right>}
+\newcommand{\abso}[1]{\left|#1 \right|}
+\newcommand{\zero}{\{0\}}
+\newcommand{\then}{\rightarrow}
+\newcommand{\nonneg}{\Z^+ \cup \{0\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\union}[2]{\bigcup_{#1}^{#2}}
+\newcommand{\inter}[2]{\bigcap_{#1}^{#2}}
+\newcommand{\openclose}[1]{\left( #1 \right]}
+\newcommand{\closeopen}[1]{\left[ #1 \right)}
+\newcommand{\compo}[2]{#1 e^{i #2}}
+\newcommand{\laplase}{\bigtriangleup}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\braket}[2]{\left< #1 \mid #2 \right>}
+\newcommand{\ketbra}[2]{\left| #1 \right> \left< #2 \right|}
+\newcommand{\ketpsit}{\ket{\psi(t)}}
+\newcommand{\ketphit}{\ket{\phi(t)}}
+\newcommand{\ham}{\mathbf{H}}
+\newcommand{\unx}{\hat{\mathbf{x}}}
+\newcommand{\uny}{\hat{\mathbf{y}}}
+\newcommand{\uns}{\hat{\mathbf{s}}}
+\newcommand{\unr}{\hat{\mathbf{r}}}
+\newcommand{\untheta}{\hat{\boldsymbol\theta}}
+\newcommand{\unphi}{\hat{\boldsymbol\phi}}
+
+
+
+\newtheorem*{remark}{Remark}
+\title{\textbf{Analytical Mechanics}}
+\author{Dennis Li}
+\begin{document}
+\maketitle
+\hrule
+
+
+\section{Newtonian Mechanics}
+To start the class off, we will re-formulate our understanding of the Newtonian mechanics, starting from revisiting the Newtons law of motion. 
+
+\subsection{Newton's Laws of Motion}
+The first of which is the \textbf{law of inertia}. It helps us define a framework in which motions can be studied in Newtonian settings. We can see it as: 
+
+\textit{A \textbf{reference frame} is \textbf{inertial} if a particle initially at rest stays at rest when no external force is applied}. 
+
+
+This helps us define where we can apply the second law.
+
+The second law states that if you are in an inertial reference frame and you are measuring physical parameters, the following relationship is true.
+\[
+\sum \mathbf{F}_{c} = \dydx{\mathbf{p}_{c}}{t}
+\]
+Here $c$ stands for \textbf{center of mass}. And it is important that we are studying the right hand side of the equation since it leads us to the third law, which can be summarized as: For each action, there is an equal but opposite and co-linear reaction. Written as
+\[
+\mathbf{F}_{BA} = \mathbf{F}_{BA}
+\]
+This law implies that force is dependent of the reference frame, and this is why we have to make some specification in the second law. 
+
+
+\subsection{Representation}
+Work in Progress
+
+\subsection{Convert Cartesian to Polar in 2D}
+Representation in Cartesian coordinates
+\[
+\unx(x,y)=\unx(0,0)=\unx
+\]
+And the same applies to $\uny$ since Cartesian coordinates are uniform. And we can represent the position with
+\[
+\dydx{}{t}\mathbf{r}(t) = \Dot{x}\unx+\Dot{y}\uny
+\]
+Now we examine what happen if we go to polar form. In polar form, the position vector is expressed simply as
+\[
+\mathbf{r}(t) = s\uns
+\]
+Here, we use $s$ to define the distance from the origin in the $2D$ plane. We have to acknowledge that $\uns$ changes depending on where the position vector is, therefore it is not uniform. We have to treat it also as a function of time. The velocity is defined the same way as before, by taking the derivative with respect to time. We obtain 
+\[
+\Dot{\mathbf{r}} = \Dot{s}\uns + s\Dot{\uns} 
+\]
+Here, we have to find a way to express this in terms of $\uns$ and $\unphi$. First, we would define our unit polar vectors.
+\[
+\uns = \cos\phi\unx + \sin\phi\uny
+\]
+Here, $\phi$ is a function of time. And since $\unr \perp \unphi$, we can use the fact that $\unr \cdot \unphi = 0$ to find $\unphi$. It will be
+\[
+\unphi = -\sin\phi\unx + \cos\phi\uny
+\]
+Now, if we take their time derivative, we have
+\[
+\Dot{\uns} = -\Dot{\phi}\sin\phi\unx + \Dot{\phi}\cos\phi\uny = \Dot{\phi}\unphi
+\]
+\[
+\Dot{\unphi} = -\Dot{\phi}\cos\phi\unx - \Dot{\phi}\sin\phi\uny = - \Dot{\phi}\uns
+\]
+The result is obtained from doing some substitution. And if we substitute our result into the original expression for $\Dot{\mathbf{r}}$, we have
+\[
+\Dot{\mathbf{r}} = \Dot{s}\uns + s\Dot{\phi}\unphi
+\]
+This completes our description to the velocity in polar form. And if we take the time derivative again, we will have the expression for acceleration. Here's how
+\begin{align*}
+    \dydx{}{t}\Dot{\mathbf{r}} &= \dydx{}{t}\paren{\Dot{s}\uns + s\Dot{\phi}\unphi} \\
+    \ddot{\mathbf{r}} &= \ddot{s}\uns + \dot{s}\dot{\uns} + \dot{s}\Dot{\phi}\unphi + s\ddot{\phi}\unphi + s\Dot{\phi}\dot{\unphi}\\
+                      &= \ddot{s}\uns + \dot{s}\dot{\phi}\unphi + \dot{s}\dot{\phi}\unphi + s\ddot{\phi}\unphi -  s\Dot{\phi}^2\uns\\
+                      &= \paren{\ddot{s}-s\dot{\phi}^2}\uns + \paren{2\dot{s}\dot{\phi}+s\ddot{\phi}}\unphi
+\end{align*}
+
+
+
+\subsection{Convert Cartesian to Spherical in 3D}
+
+\subsection{Convert Cartesian to Cylindrical in 3D}
+
+\subsection{Dot Products and Cross Products}
+There are several things we need to know about these products. First, if we have two vector $\mathbf{a}$ and $\mathbf{b}$. Think of it like follows
+\[
+\mathbf{a}\cdot\mathbf{b} = \abso{\mathbf{b}}\paren{\mathbf{a}\cdot \Hat{\mathbf{b}}}
+\]
+Think of it like projecting one vector onto another and re-scaling it using the magnitude. Here, $\hat{\mathbf{b}}$ is the \textit{unit vector} of $\mathbf{b}$, or the normalized $\mathbf{b}$. This way you have a more intuitive understanding of it.
+
+As for the cross product, it creates a third vector that is perpendicular to the plane created by the original 2 vectors. Let us write it out as follows
+\[
+\mathbf{a}\times \mathbf{b} = \mathbf{c} \quad \mathbf{a}\perp \mathbf{c} \vee \mathbf{b}\perp\mathbf{c}
+\]
+
+\section{Changing Between Frame}
+If we start with $\mathbf{r},\mathbf{v},\mathbf{a}$, and we moved to another frame and defined as $\mathbf{r}',\mathbf{v}',\mathbf{a}'$. If we have 2 frame of reference $A,B$ with origin at $A,B$, and a mutual object $C$ somewhere else, we can find the following relationship.
+\[
+\mathbf{r}_{A,B} + \mathbf{r}_{B,C} = \mathbf{r}_{A,C}
+\]
+And
+\[
+\mathbf{r}_{C,A} = \mathbf{r}_{C,B} - \mathbf{r}_{A,B}
+\]
+We should get into the hoppy of using a double subscript to track which frame are we talking about and what frame are we in. For example
+\[
+\mathbf{r}_{A,B} \colon \text{A relative to B}
+\]
+Remember that $\mathbf{A} - \mathbf{B}$ essentially gives you a vector pointing from the tip of $B$ to the tip of $A$ when they are connected tail to tail.
+What happens is that you can in fact figure out what $C$ is like in another frame, say, $B$, by subtracting the position vector between $B$ to $A$. We can take derivative of the expression to receive
+\begin{align*}
+    \mathbf{v}_{A,B}+\mathbf{v}_{B,C}=\mathbf{v}_{A,C}\\
+    \mathbf{v}_{C,A} = \mathbf{v}_{C,B} - \mathbf{v}_{A,B}
+\end{align*}
+We do it again to get the acceleration
+\begin{align*}
+    \mathbf{a}_{A,B}+\mathbf{a}_{B,C}=\mathbf{a}_{A,C}\\
+    \mathbf{a}_{C,A} = \mathbf{a}_{C,B} - \mathbf{a}_{A,B}
+\end{align*}
+This is always true if things are not spinning.
+
+Also notice that if you are trying to find $C,A$, you are essentially subtracting your information of $C$ in $B$ and $A$ in $B$. This is an easier way to memorize it. 
+
+\subsection{Question}
+If 2 frames agree with the velocity at one moment, do they have to agree with the acceleration as well?
+
+Think about the \textit{Shoot the Monkey} problem. If you aim a gun at a monkey that will drop off from a tree the moment you shoot at it, you are actually aim directly at the monkey. Since in the monkey's perspective, the bullet is falling along with the bullet once it leaves the muzzle. 
+
+In the Hunter's perspective, the bullet will have the same acceleration downward and falling with the monkey. But in the monkey perspective, there is no acceleration since it is a free-fall frame. The monkey will only see the bullet approaching at constant velocity. 
+
+Therefore, the answer to this question is \textbf{NO}.
+
+\subsection{Equivalence Principle}
+If you are in a frame that has acceleration \textbf{a} relative to a inertial frame $S$. Note that all inertial frame agree with acceleration since none of them accelerates with respect to each other, else it would not be inertial. In this case, Newton's Second Law can work if you inject \textit{extra fake gravity} into $S$.
+
+We can use the acceleration of $S$ with respect to the inertial frame $S_i$, we define it as $\mathbf{a}_{S,S_i}$. And we use this acceleration to define a fake force or a \textit{fake gravity}, 
+\[
+-\mathbf{a}_{S,S_i} = \mathbf{g}_{fake}
+\]
+and Newton's Second Law works again. 
+
+\section{Moving on a Curve}
+The acceleration on a particle moving on a curve can be characterized by
+\[
+\mathbf{a} = \dydx{\abso{\mathbf{v}}}{t}\hat{\parallel} + \frac{v^2}{r_{osc}}\hat{\perp}
+\]
+where $v$ is the speed, and $\mathbf{v}$ is the velocity vector. And $r_{osc}$ is the radius of the osculating circle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
