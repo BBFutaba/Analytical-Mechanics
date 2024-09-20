@@ -160,6 +160,8 @@ Instructor \\ Prof. Gabe\\
 
     \item $A$’s direction of motion relative to $C$ is perpendicular to B’s direction of motion relative to $C$.
 
+    This is always true for all frames and all inertial frames. The relative motion of $A,B$ to $C$ should not be frame dependant. 
+
     \item A is always 3 m away from B.
     
     This is always true for all frames and all inertial frames. 
@@ -373,18 +375,16 @@ The answer to this is $\theta = \theta_0$. This is true because after the bullet
 
     \item[(iii)] In frame \(S'\), what’s going on with the velocity of the particle at the lowest points (where the trajectory has cusps)?
 
-    At the cusps of the motion, the velocity of the particle is 0. Since the velocity vector will be pointing at the opposite direction to where the frame $S'$ is moving, therefore they sort of cancels. 
+    At the cusps of the motion, the velocity of the particle is 0. Since the velocity vector will be pointing at the opposite direction to where the frame $S'$ is moving, therefore they sort of cancels. Since the rotation starts at $x=R$ for $S$, it should reach the cusps at $\omega t= \frac{\pi}{2} 2\pi k$ for some $k \in \Z$. And if we throw this info in, we have $\mathbf{v}_{cusps} = -v \unx$, which when working together with the velocity of $S$ moving relative to $S'$, or $v_S = v\unx$, it becomes 0. 
 \end{enumerate}
 
-
-复制代码
 Go watch the following \textbf{black \& white video} from the 1960s about frames-of-reference (watch the whole thing — it’s worth it). There’s a scene around minute 9:00 where Prof. Hume demonstrates precisely this situation. A small ball is moving in a vertical circle at constant speed (because it’s attached to a spinning disc), and then he lets the whole disc move horizontally on a track at constant speed relative to the ground. A Sharpie-type marker on the ball traces out a curve on a piece of plexiglass (that’s stationary relative to the ground) as it coasts by. See the shape drawn out by the marker? You just determined a parametric equation for that shape. The expressions for \( x(t), y(t) \) you just derived trace out a \textbf{cycloid}. There is a nice description and animation on \href{https://en.wikipedia.org/wiki/Cycloid}{this Wikipedia page}.
 
 But appreciate what you’ve just done. Generating the equation of the cycloid starting from frame \(S'\) isn’t easy. But once you realize that, in a frame that co-moves with the center of the rolling disc, the cycloid is just a particle moving in a circle at constant speed, then life becomes easier. All you need to know is (1) how to write down an equation for the trajectory in that co-moving frame (and circles are fairly easy, so we do know how to do this), and (2) how to \textit{translate} your description in this co-moving frame back into the “ground” frame.
 
 \textbf{This is an extremely powerful and recurring theme in the way physics tries to analyze the world!} Don’t default to analyzing everything from scratch. Instead, look for the familiar in the unfamiliar, and avail yourself of tools like frame-shifting to help make things look familiar.
 
-\textbf{(c)} Let’s see what the circle would look like from yet a third point of view. Now imagine a frame \(S''\) (again with standard axes and basis vectors aligned with those of \(S\)) whose origin, as viewed from frame \(S\), moves along the \(z\)-axis of \(S\) in the \(-\unx\) direction at \(v\) (same speed that \(S\) says the circulating particle has). Same drill:
+\textbf{(c)} Let’s see what the circle would look like from yet a third point of view. Now imagine a frame \(S''\) (again with standard axes and basis vectors aligned with those of \(S\)) whose origin, as viewed from frame \(S\), moves along the \(z\)-axis of \(S\) in the \(-\unz\) direction at \(v\) (same speed that \(S\) says the circulating particle has). Same drill:
 
 \begin{enumerate}
     \item[(i)] Write down the position, velocity, and acceleration of the same particle as functions of time as viewed in \(S''\).
@@ -482,44 +482,158 @@ The path for $S''$ will be curved, initially moving to Northwest and slowly lean
 
 Since we are initially on the line $\phi = 0$, or basically the $x$ axis, and the puck goes in a straight line in $S$ perspective, it's polar coordinate can be simply written as
 \[
-P_{Cart} = (R-v t, 0)
+P_{S} = (R-v t, 0)
 \]
-Where $v$ is the speed of the puck.
+Where $v$ is the speed of the puck, and it is moving along the $\phi = 0$ axis with the radius changing by a rate of $-vt$.
 
 \textbf{(b)} Now write down the polar coordinates \(r', \phi'\) of the puck as measured by an observer (frame \(S'\)) at rest on the turntable. (Choose these coordinates so that \(\phi\) and \(\phi'\) coincide at \(t = 0\).) Describe and sketch the path seen by this second observer. Is the frame \(S'\) inertial?
 
 \[
-P_{polar} = \paren{ R - vt, -\omega t}
+P_{S'} = \paren{ R - vt, -\omega t}
 \]
-Where $v$ is the speed of the puck.
+Where $v$ is the speed of the puck, and the angle is changing at the rate which the round table is rotating. Since the round table is rotating clockwise, it is a $-\omega t$ rate. 
 
 \end{enumerate}
 
 \section{Is this frame inertial}
-We do not have enough evidence to show this frame is inertial or not. Since there are tension force from the wire hanging the ball and it is not in a completely force free environment. Therefore we do not have enough evidence, that is, force-less environment. 
+You’re getting a video feed on your phone from a camera inside a railway boxcar that has no windows. You have no idea where this boxcar is or how the camera is oriented inside it, but you know that the camera is affixed to a wall of the car, i.e. it’s not moving relative to the car’s interior. On your video screen, you see the following. The floor and ceiling look horizontal to you, i.e. you don’t need to tilt your phone to some weird angle to have the floor in the image be parallel to the floor you’re physically standing on. Hanging from the ceiling is a mass on a thin taut rope, only it’s not hanging perpendicular to the boxcar floor in the video. Instead, it’s hanging kind of down and left, making some noticeable angle with the ground, but the mass is otherwise stationary with respect to the boxcar interior. Assume that a frame attached to the ground on which you are physically standing while watching this video stream is inertial. Do you have enough evidence to determine whether the boxcar frame is inertial? If the answer is “yes”, then is that frame inertial or not? If the answer is “no”, then explain why you don’t have enough evidence.
+
+We do not have enough evidence to show this frame is inertial or not. If the ball is \textit{hanging} on a rope, then the rope is under tension. Since there are tension force from the wire hanging the ball and it is not in a completely force free environment. Therefore we do not have enough evidence, that is, force-less environment. If we have information on whether the rope is under tension or not, we can draw a more definitive answer since it is the only thing contacting the ball. 
 
 
 \section{1 block, 1 wedge, no friction anywhere}
 
 This is the problem we started in class. A block of mass $m$ is initially at rest on a wedge of mass $M$ (also at rest) that makes an angle $\theta$ with the ground. There is no friction either between the block and the wedge or between the wedge and the floor. The system is released from rest. Determine:
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pictures/PS00/wedgeBlock.png}
+    \caption{Moving Wedge and a Block}
+    \label{fig:01-7}
+\end{figure}
+
 \begin{enumerate}
     \item the magnitudes of the accelerations of the block relative to the floor and of the wedge relative to the floor;
 
-    We start by expressing the gravitational force on the block
+\textcolor{blue}{The lesson learned in this question is not to assert my previous knowledge of inertial frame without further consideration of acceleration. Newton's second law only works in inertial frames and we would have to conjure some extra information to make our system satisfy this criteria. And making some tweaks to our frame of reference so that the calculation is the easiest is also very important. In this question, we rotated the frame of reference to align with the \textit{net gravity} that we made up, so the problem would behave just as an introductory mechanics problem, except the algebra is more hell-ish. My previous answer was completely erroneous so I gray-ed out all of it.}
+
+\textcolor{gray}{When the block is sliding down the wedge, it experiences the normal force $F_{N,w}$ from the wedge, and $F_g$ by gravity. We know that $F_g$ is given by
     \[
-    F_{g,m} = mg
+    F_{b,g} = mg
     \]
-    A a normal force acts on the block from the wedge, and an equal but opposite reaction from the block acts on the wedge. We can find its horizontal component
+    And we can derive that the normal force is given by
     \[
-   - F_{m,M,x} = \frac{mg}{\tan\theta}
+    F_{N,w} = mg\cos\theta
     \]
-    And we can derive the acceleration of the wedge horizontal to the floor in the perspective where the block is stationary. 
+    And a component that is parallel to the surface of the wedge on the block
     \[
-   - a_{w,b} = \frac{mg}{M\tan\theta}
+    F_{bx,w} = mg\sin\theta
     \]
-    WIP
-        
-    \item the magnitude of the contact force that the wedge applies to the block.
+    We can use this force to find the acceleration of the block using Newton's second law in the wedge perspective, and is parallel to the surface of the wedge. This is also the case with respect to the floor. 
+    \[
+    a_{b,w} = a_{b,f} = g\sin\theta
+    \]
+    We can then use this to find the horizontal component, or $x$ component of this acceleration by
+    \[
+    a_{bx,w}=g\sin\theta\cos\theta
+    \]
+    Or simplified as
+    \[
+    a_{bx,w} = \frac{g}{2}\sin\paren{2\theta}
+    \]
+    We can find the force that is pushing the block in the $x$ direction using Newton's second law again
+    \[
+    F_{wx,b} = m\paren{a_{bx,w}} = mg\sin\theta\cos\theta
+    \]
+    We also know that the block exert a reaction in the opposite direction that drives the wedge in the $-x$ direction. We can find the following equality
+    \[
+    Ma_w = F_{wx,b} = mg\sin\theta\cos\theta
+    \]
+    Therefore the acceleration of the wedge relative to the ground can be found as
+    \[
+    a_{w,f} = \frac{mg}{M}\sin\theta\cos\theta
+    \]
+    Or simplified as
+    \[
+    a_{w,f} = \frac{mg\sin\paren{2\theta}}{2M}
+    \]
+    \item the magnitude of the contact force that the wedge applies to the block. The magnitude of the contact force is the magnitude of the normal force the wedge applies to the wedge, given by 
+    \[
+    F_{N,w} = mg\cos\theta
+    \]}
+
+Mistakes in original answer is gray-ed out.
+
+
+\begin{large}
+    \textbf{Correction}
+\end{large}
+
+
+\textcolor{blue}{The problem is solved correctly when we do not treat the wedge as an inertial frame without additional tweaks. Here, since the block is accelerating in the opposite direction, we introduce a fictional gravity $A = -a_{M,f}$ that compensates for the acceleration of the wedge.}
+
+\textcolor{blue}{Now, we can define a total gravity that is the result of the real gravity and the fake gravity. as $g'$. And the angle $g'$ makes with the real gravity is defined as $\phi$. Now, we define a new frame of reference that is tilted $\phi$ degrees such that $g'$ points straight in the $-\uny$ direction. And in this frame, we can treat the wedge frame as somewhat inertial. And the acceleration down the wedge, or parallel to the wedge in the wedge perspective is
+\[
+a_{b,w} = a_b' = g'\sin\paren{\theta+\phi}
+\]
+We denote it with $a_b'$}
+
+\textcolor{blue}{We can use trig identities to expand and get
+\[
+a_b' = g'\sin\phi\cos\theta + g'\cos\phi\sin\theta
+\]
+We notice that $g = g'\cos\theta$ and the fake gravity $A = g'\sin\phi$, the whole thing simplifies to
+\[
+a_b' = A\cos\theta + g\sin\theta \tag{Eq.1}
+\]
+We can also use $g'$ to find the normal force, defined as
+\[
+F_N = mg'\cos\paren{\theta+\phi}
+\]
+We can use the trig identities again to expand this into
+\[
+F_N = mg'\cos\theta\cos\phi - mg'\sin\theta\sin\phi
+\]
+We can use the relationship just like before to arrive at
+\[
+F_N = mg\cos\theta - mA\sin\theta \tag{Eq.2}
+\]
+And we know that the normal force has a component of the acceleration of the wedge relative to the floor.
+\[
+F_N\sin\theta = MA 
+\]
+Throw in the normal force, we have
+\[
+mg\cos\theta\sin\theta - mA\sin^2\theta - MA = 0
+\]
+This simplifies to
+\[
+A = \frac{mg\cos\theta\sin\theta}{M+m\sin^2\theta} \tag{Eq.3}
+\]
+We also know that in the frame of the floor, we will call it $a_b$, the acceleration of the block is actually
+\[
+\textbf{a}_b = \textbf{a}'_b - A\unx \tag{Eq.4}
+\]
+And this is the last piece of the puzzle. We have to find $a_b'$ using Equation 1.
+\[
+a_b' = g\sin\theta\paren{\frac{M+m}{M+m\sin^2\theta}}
+\]
+And now we can work out the expression for the acceleration $a_b$, and that is
+\[
+\mathbf{a}_b = a'_b\paren{\cos\theta \unx -\sin\theta\uny} - A\unx
+\]
+And we can find the magnitude of the acceleration $a_b$ by
+\[
+a_b^2 = \paren{a'_b\cos\theta - A}^2 + \paren{a'_b\sin\theta}^2
+\]
+Now we can carry out this algebraically and substitute the expressions in, after simplification, we will find that
+\[
+a_b =\frac{g\sin\theta}{M+m\sin^2\theta} \sqrt{M^2+\sin^2\theta\paren{2M+m^2}}
+\]
+And the magnitude of the contact force is the magnitude of the normal force. With our previously established formula, we obtain that the normal force is
+\[
+F_N = mg\cos\theta - mA\sin\theta \quad A = \frac{mg\cos\theta\sin\theta}{M+m\sin^2\theta} 
+\]}
+
         
 \end{enumerate}
 Express your answers only in terms of $m$, $M$, $\theta$, and constants of nature.
@@ -527,29 +641,66 @@ Express your answers only in terms of $m$, $M$, $\theta$, and constants of natur
 
 
 
-\section{1 train, 1 person, 1 ball, 2 frames}
+\section{1 Train, 1 Person, 1 Ball, 2 Frames}
 
-\textbf{2-41.} A train moves along the tracks at a constant speed \(u\). A woman on the train throws a ball of mass \(m\) straight ahead with a speed \(v\) with respect to herself.
+\textbf{Problem 2-41.} A train moves along the tracks at a constant speed \(u\). A woman on the train throws a ball of mass \(m\) straight ahead with a speed \(v\) relative to herself.
 
 \textbf{(a)} What is the kinetic energy gain of the ball as measured by a person on the train?
-\[
-E_{gain} = \frac{1}{2}mv^2
-\]
 
-\textbf{(b)} By a person standing by the railroad track?
+From the perspective of a person on the train, the kinetic energy gained by the ball is:
 \[
-E_{gain} = \frac{1}{2}m\paren{2uv + v^2}
+\Delta E_{\text{K,t}} = \frac{1}{2}mv^2
 \]
+where \( \Delta E_{\text{K,t}} \) is the change in kinetic energy in the reference frame of the person on the train. This is also the work done by the woman, as no external forces act on the train in this frame.
+
+\textbf{(b)} What is the kinetic energy gain of the ball as measured by a person standing by the railroad track?
+
+In the ground frame, the ball’s velocity is the combination of the train's velocity \(u\) and the velocity \(v\) with which the woman throws the ball. Thus, the kinetic energy of the ball, as seen from the ground, is:
+\[
+E_{\text{ball,g}} = \frac{1}{2}m(u + v)^2 = \frac{1}{2}m(u^2 + 2uv + v^2)
+\]
+The initial kinetic energy of the ball (before it was thrown), as seen from the ground, was:
+\[
+E_{\text{ball,g,in}} = \frac{1}{2}mu^2
+\]
+The change in the kinetic energy, or the kinetic energy gained, as observed from the ground, is:
+\[
+\Delta E_{\text{K,g}} = E_{\text{ball,g}} - E_{\text{ball,g,in}} = \frac{1}{2}m(u^2 + 2uv + v^2) - \frac{1}{2}mu^2
+\]
+Simplifying:
+\[
+\Delta E_{\text{K,g}} = \frac{1}{2}m(2uv + v^2)
+\]
+where \( \Delta E_{\text{K,g}} \) is the energy gain in the ground frame.
 
 \textbf{(c)} How much work is done by the woman throwing the ball?
+
+In both the train frame and the ground frame, the work done by the woman is the same. The woman exerts force only on the ball, and since the train is not accelerating, her work is independent of the train’s motion. The work done by the woman, which is equal to the kinetic energy change of the ball in her frame, is:
 \[
-W_{women} = \frac{1}{2}mv^2
+W_{\text{woman}} = \Delta E_{\text{K,t}} = \frac{1}{2}mv^2
+\]
+This work is the same in both the train frame and the ground frame because the train is moving at a constant speed.
+
+\textbf{(d)} What is the work done by the train?
+
+To calculate the work done by the train, we look at the difference between the total kinetic energy change observed from the ground and the work done by the woman. The change in energy observed from the ground is:
+\[
+\Delta E_{\text{K,g}} = \frac{1}{2}m(2uv + v^2)
+\]
+The work done by the woman is:
+\[
+W_{\text{woman}} = \frac{1}{2}mv^2
+\]
+Thus, the work done by the train is the difference between the energy change observed from the ground and the work done by the woman:
+\[
+W_{\text{train}} = \Delta E_{\text{K,g}} - W_{\text{woman}} = \frac{1}{2}m(2uv + v^2) - \frac{1}{2}mv^2
+\]
+Simplifying:
+\[
+W_{\text{train}} = muv
 \]
 
-\textbf{(d)} By the train?
-\[
-W_{train} = muv
-\]
+
 
 
 \end{document}

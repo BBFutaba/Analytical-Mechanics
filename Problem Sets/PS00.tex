@@ -108,9 +108,9 @@
 \begin{document}
 \begin{center}
 \ifshow
-  \textbf{\Large Problem Set 01 Solution}\\
+  \textbf{\Large Problem Set 00 Solution}\\
 \else
-  \textbf{\Large Problem Set 01}\\
+  \textbf{\Large Problem Set 00}\\
 \fi
 Instructor \\ Prof. Gabe\\
 \end{center}
@@ -602,7 +602,7 @@ find
     \[
     \unrho = \sin\theta\cos\phi \unx + \sin\theta\sin\phi\uny + \cos\theta \unz
     \]
-    What we know about $\phi$ is that it should be orthogonal to $\unrho$ and $\untheta$. This means that $\unphi \cdot \unrho = 0$. And since it is on the $z=0$ plane, we can ignore the $\unz$ component in our expression for $\phi$. To make life easier, we define $\rho(z=0) = \varrho = \sqrt{x^2 + y^2}$. We can substitute $x$ and $y$ to obtain the polar expression for $\varrho$
+    What we know about $\unphi$ is that it should be orthogonal to $\unrho$ and $\untheta$. This means that $\unphi \cdot \unrho = 0$. And since it is on the $z=0$ plane, we can ignore the $\unz$ component in our expression for $\phi$. To make life easier, we define $\rho(z=0) = \varrho = \sqrt{x^2 + y^2}$. We can substitute $x$ and $y$ to obtain the polar expression for $\varrho$
     \[
     \varrho = \rho\sin\theta
     \]
@@ -648,7 +648,7 @@ find
         \untheta = \cos\theta\cos\phi \unx + \cos\theta\sin\phi \uny - \sin\theta \unz
     \end{cases}
     \]
-    To obtain the expression for $\unx, \uny, \unz$ from this result, we need to know that $\unx$ has no $\uny,\unz$ components. So we can eximply extract the corresponding term from each unit vector and obtain
+    To obtain the expression for $\unx, \uny, \unz$ from this result, we need to know that $\unx$ has no $\uny,\unz$ components, and the same goes to $\uny$ and $\unz$. So we can eximply extract the corresponding term from each unit vector and obtain
     \[
     \begin{cases}
         \unx = \sin\theta\cos\phi \unrho + \cos\theta\cos\phi \untheta -\sin\phi\unphi \\
@@ -705,7 +705,56 @@ find
     \end{cases}
     \]
     \newpage
-    \item[MT5 2.1]
+    \item[MT5 2.1] Suppose that the force acting on a particle is factorable into one of the following forms:
+
+        \begin{itemize}
+            \item[(a)] $F(x_i, t) = f(x_i) g(t)$
+            By Newton's Second law, we can rewrite it as
+            \[
+            m\dydx{^2x_i}{t^2} = f(x_i)g(t)
+            \]
+            Move stuff around and we have
+            \[
+            \frac{m}{f(x_i)}d^2x = g(t)\,dt^2
+            \]
+            We cannot integrate this on both side.
+            \item[(b)] $F(\dot{x}_i, t) = f(\dot{x}_i) g(t)$
+            Through the same process, we yield 
+            \[
+            m\dydx{\dot{x}_i}{t} = f(\dot{x}_i)g(t)
+            \]
+            Move stuff around, we have
+            \[
+            \frac{m}{f(\dot{x}_i)} \,d\dot{x}_i = g(t)\,dt
+            \]
+            We can integrate this on both side. 
+            \item[(c)] $F(x_i, \dot{x}_i) = f(x_i) g(\dot{x}_i)$
+            Rewrite as
+            \[
+            m\dydx{^2x_i}{t^2} = f(x_i) g(\dot{x}_i)
+            \]
+            Then, write it as
+            \[
+            m\dydx{}{t}\dot{x}_i = f(x_i) g(\dot{x}_i)
+            \]
+            Now we use the chain rule to rewrite the differential operator
+            \[
+            m\dydx{}{t}\dot{x}_i  = m\paren{\dydx{}{x_i}\dydx{x_i}{t} }\dot{x}_i= f(x_i) g(\dot{x}_i)
+            \]
+            And this becomes
+            \[
+            m\dot{x}_i\dydx{\dot{x}_i}{x_i} = f(x_i) g(\dot{x}_i)
+            \]
+            Now this is separable, and it yields
+            \[
+            m\dot{x}_i\frac{d\dot{x}_i}{g(\dot{x}_i)} = f(x_i)\,dx_i
+            \]
+            And we can integrate this on both side. 
+            
+        \end{itemize}
+
+
+    
 
     
 

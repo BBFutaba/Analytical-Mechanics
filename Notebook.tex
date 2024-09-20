@@ -56,6 +56,7 @@
 \newcommand{\ham}{\mathbf{H}}
 \newcommand{\unx}{\hat{\mathbf{x}}}
 \newcommand{\uny}{\hat{\mathbf{y}}}
+\newcommand{\unz}{\hat{\mathbf{z}}}
 \newcommand{\uns}{\hat{\mathbf{s}}}
 \newcommand{\unr}{\hat{\mathbf{r}}}
 \newcommand{\untheta}{\hat{\boldsymbol\theta}}
@@ -212,12 +213,179 @@ The acceleration on a particle moving on a curve can be characterized by
 where $v$ is the speed, and $\mathbf{v}$ is the velocity vector. And $r_{osc}$ is the radius of the osculating circle.
 
 
+\subsection{Expressing Speed}
+We can express speed as a function of position, and find the acceleration this way. Think of the function of force be written as following. 
+    \[
+    F(x_i, \dot{x}_i) = f(x_i) g(\dot{x}_i)
+    \]
+            Rewrite as
+            \[
+            m\dydx{^2x_i}{t^2} = f(x_i) g(\dot{x}_i)
+            \]
+            Then, write it as
+            \[
+            m\dydx{}{t}\dot{x}_i = f(x_i) g(\dot{x}_i)
+            \]
+            Now we use the chain rule to rewrite the differential operator
+            \[
+            m\dydx{}{t}\dot{x}_i  = m\paren{\dydx{}{x_i}\dydx{x_i}{t} }\dot{x}_i= f(x_i) g(\dot{x}_i)
+            \]
+            And this becomes
+            \[
+            m\dot{x}_i\dydx{\dot{x}_i}{x_i} = f(x_i) g(\dot{x}_i)
+            \]
+            Now this is separable, and it yields
+            \[
+            m\dot{x}_i\frac{d\dot{x}_i}{g(\dot{x}_i)} = f(x_i)\,dx_i
+            \]
+            And we can integrate this on both side. 
+
+    This means that we can define an equivalence relationship
+    \[
+    a = v\dydx{v}{x}
+    \]
+    This is what happens when you have speed as a function of position, and cannot explicitly express velocity as a function of time, such as in a spring motion, where
+    \[
+    \frac{1}{2}mv^2 - \frac{1}{2}kx^2 = 0
+    \]
+    Yes, you can obtain the expression of velocity, but that is after solving the ODE. This is not always feasible, so we can use the above property to express acceleration directly using the speed as a function of position. 
+
+\subsection{Exponential Function}
+    In physics, a function such as $y = e^{x}$ is not nicely defined since raising e to $5$ meters power is not. Therefore we need to add some coefficient to make the dimensions right, for example.
+    \[
+    y(t) = Ce^{kt}
+    \]
+    Where $C$ has unit of $L$ length, and $k$ has unit of $\frac{1}{L}$ length.
+    \subsubsection{Example 1}
+    If a particle traces this path, and remains at a constant speed $v_0$, how do we figure out its acceleration? Since we have no information on their relationship with respect to time, we can differentiate it implicitly
+    \[
+    \dot{y} = \dydx{y}{t} = \dydx{y}{x}\dydx{x}{t} = Cke^{kx}\dot{x}
+    \]
+    We can this again, and differentiate
+    \[
+    \ddot{y} = \dydx{\dot{y}}{t} = \dydx{\dot{y}}{x}\dydx{x}{t} = Ck^2e^{kx}\dot{x} + Cke^{kx}\ddot{x} = Cke^{kx}\paren{k\dot{x}^2+\ddot{x}}
+    \]
+    We also know that $\mathbf{a}\perp\mathbf{v}$. Therefore we can use the fact 
+    \[
+    \dot{x}\ddot{x}+\dot{y}\ddot{y} = 0
+    \]
+    This is the last piece of the puzzle for us to figure out the acceleration. 
+    \subsubsection{Example 2}
+    If the particle is released from $kx=1$ and this trajectory is frictionless where the particle has to move along it, what is its acceleration and velocity at $x=0$? In this case, we can exploit the fact that
+    \[
+    K(t) + V(t) = \textit{Constant}
+    \]
+    We can in fact implicitly differentiate this constraint to obtain
+    \[
+    \dydx{}{t}\paren{ \frac{1}{2}v^2(t) + gy(t)} = 0
+    \]
+    Consequently, this gives us
+    \[
+    v\dot{v} + gv_y = 0
+    \]
+    This eventually gives you
+    \[
+    \dydx{v}{t} = \frac{-g v_y}{v}
+    \]
+    And we can work from here.
 
 
 
+\section{Newton's Second Law}
+    When we are really using this law, we are actually working with a vector ODE
+    \[
+    \mathbf{F}_{net} = m\ddot{\mathbf{r}}
+    \]
+    There are a few scenarios where we can work on it. First of which it becomes an algebraic equation with some elementary problems.
 
+    Another scenario is where we would obtain some ODE from it, such as in harmonic oscillators. 
+        \[
+        -k\mathbf{x} = m\ddot{\mathbf{x}}
+        \]
 
+    A third scenario, we would have drag and air resistance, something like
+    \[
+    \mathbf{F} = \mathbf{F}(\mathbf{v})
+    \]
+    This becomes a first order ODE with components of $\mathbf{v}(t)$ to obtain $\mathbf{r}(t)$.
 
+    We would never go beyond second order. But we might have a mix of them where we have a system of ODE. This is what the Newton's Second Law is the most powerful. 
+
+    For example, for a particle moving a electromagnetic field, how would we express its motion?
+
+\subsubsection{Motion in B Field}
+    For details, check chapter $2$ of Taylor. Say you have a particle in a uniform \textbf{B} field in the $\unz$ direction. 
+    \[
+    \mathbf{B} = B_0 = \unz
+    \]
+
+    You have a particle with velocity 
+    \[
+    \mathbf{v}_0  = v_{x0}\unx +v_{y0}\uny + v_{z0}\unz 
+\] 
+at time $t=0$. We want to find $x(t),y(t),z(t)$. We know that the force can be written as
+\[
+\mathbf{F} = m\ddot{\mathbf{r}} = q\mathbf{v}\times \mathbf{B}
+\]
+do cross products as cyclic permutations and not the determinant, its faster. And we have obtained that the force the particle experiences in the field is
+\[
+\begin{cases}
+    m\ddot{x} = qv_yB_0\\
+    m\ddot{y} = qv_xB_0\\
+    m\ddot{z} = 0
+\end{cases}
+\]
+We have obtained the ODE
+\[
+\dot{v}_x = \frac{qB_0}{m}v_y \quad \dot{v}_y = -\frac{qB_0}{m} v_x
+\]
+We will give the coefficient a name $\omega = \frac{qB_0}{m}$, since it should have a unit of $s^{-1}$. We will solve this with a tricky method. We differentiate the first equation and obtain
+\[
+\ddot{v}_x = \omega\dot{v}_y = -\omega^2v_x
+\]
+And we know what $\dot{v}_y$ is, we can simplify it. Do the same for the other ODE
+\[
+\ddot{v}_y = -\omega v_x = -\omega^2v_y
+\]
+This is obviously a harmonic oscillator equation and its solution is well-known. 
+\[
+\begin{cases}
+    v_x = A\sin\omega t + B\sin\omega t\\
+    v_y = C\sin\omega t + D\sin\omega t
+\end{cases}
+\]
+Now we throw our initial condition in, that is the speed at $t=0$. Since it was second order, we will differentiate the solution and throw in $t=0$ and compare it with out acceleration. Then we will figure out what the coefficients are. 
+
+\subsubsection{Drag}
+Now we would like to include drag in our system to make it extra fun. Say we have a drag
+\[
+\mathbf{F}_d = -b\mathbf{v}
+\]
+Where $b$ has the dimension $kg/s$. 
+
+Here, think of this scenario. A mass moving in $\unx$ with some speed $v_0$. And we have a linear drag, the air resistance $-\unx$. Intuitively, the block will keep slowing down at a rate proportional to its speed. And when it stops, there are no more drag and this will take indefinite amount of time. We can write down the following info
+\[
+\mathbf{F}_{net} = m\dot{\mathbf{v}} = -b\mathbf{v}
+\]
+Therefore
+\[
+\dot{\mathbf{v}} = -\frac{b}{m}\mathbf{v} = -\frac{1}{\tau}\mathbf{v}
+\]
+Where $\frac{1}{\tau} = \frac{b}{m}$, and it has the dimension $s^{-1}$. And now we pick a frame, where we already sort of defined previously. 
+
+Be very mindful that when we start to write ODEs, we are only working with scalar. Here we can start writing down euqatoins
+\[
+\dot{v}_x = -\frac{1}{\tau}v_x
+\]
+This is obviously $v_x = Ce^{-\frac{t}{\tau}}$, where $C$ is $v_0$. This can be extrapolated from the initial condition. Now, to obtain the position, simply integrate it
+\[
+x = -v_0\tau e^{-\frac{t}{\tau}} + C
+\]
+If we throw in $t=0$, we know $x=0$. And this tells us that $C = v_0\tau$. How do we interpret this result?
+\[
+x(t) = v_0\tau\paren{1 - e^{-\frac{t}{\tau}}}
+\]
+Basically this represents how far this object would have gone in time $\tau$ if not the resistance of air. 
 
 
 
