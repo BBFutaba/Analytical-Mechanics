@@ -26,7 +26,7 @@
 \newcommand{\pypx}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\divg}{\nabla \cdot}
 \newcommand{\curl}{\nabla \times}
-\newcommand{\dydx}[2]{\frac{d #1}{d #2}}
+\newcommand{\dydx}[2]{\frac{\text{d} #1}{\text{d} #2}}
 \newcommand{\sqbkt}[1]{\left[ #1 \right]}
 \newcommand{\paren}[1]{\left( #1 \right)}
 \newcommand{\tribkt}[1]{\left< #1 \right>}
@@ -55,9 +55,11 @@
 \newcommand{\unr}{\hat{\mathbf{r}}}
 \newcommand{\untheta}{\hat{\boldsymbol\theta}}
 \newcommand{\unphi}{\hat{\boldsymbol\phi}}
-
+\newcommand{\unz}{\hat{\mathbf{z}}}
 \newcommand{\wsnumber}{1}
 \newcommand{\wstopic}{Vectors}
+
+
 \pgfplotsset{
     every linear axis/.append style={
        axis x line=center,
@@ -112,10 +114,307 @@ Instructor \\ Prof. Gabe\\
 \hrule
 
 \vspace{0.2cm}
+\section{Extra Problem}
+Imaging a particle sliding down at constant speed $v_0$ through a path that can be represented as
+\[
+y = Ce^{kx}
+\]
+We can find it's velocity and velocity at $kx=1$ by using the relationship between $y$ and $x$ through implicitly differentiating it.
+\[
+\dot{y} = \dydx{y}{t} = \dydx{y}{x}\dydx{x}{t} = Cke^{kx}\dot{x}
+\]
+\[
+\Ddot{y} = Cke^{kx}\Ddot{x} + Ck^2e^{kx}\dot{x}^2 = Cke^{kx}\paren{\Ddot{x} + k\dot{x}^2}
+\]
+We know that the speed is constant, therefore the acceleration is $0$. Substituting $kx=1$, we have
+\[
+\Ddot{y} = Cke\paren{\Ddot{x} + k\dot{x}^2}
+\]
+Throwing numbers in, we have
+\[
+\Ddot{y} = Cke\paren{\Ddot{x} + \frac{kv_0}{1+Cke}}
+\]
+And we know that
+\[
+\dot{y}^2 + \dot{x}^2 = v_0^2
+\]
+Differentiating this with respect to time gives us
+\[
+\dot{x}\ddot{x}+\dot{y}\ddot{y} = 0
+\]
+
+Since the speed is constant, we have the relationship
+\[
+\begin{cases}
+    \dot{y}^2 + \dot{x}^2 = v_0^2\\
+    \dot{y} = Cke^{kx}\dot{x}
+\end{cases}
+\]
+Substituting into the equation, we have
+\[
+\dot{x}^2\paren{1 + Cke^{kx}} = v_0
+\]
+This gives us
+\[
+\dot{x} = v_0\sqrt{\frac{1}{1+Cke^{kx}}}
+\]
+And $\dot{y}$ can be defined using this. Since we know that
+\[
+kx = 1
+\]
+Therefore
+\[
+\dot{x} = v_0\sqrt{\frac{1}{1+Cke}}
+\]
+And 
+\[
+\dot{y} = Ckev_0\sqrt{\frac{1}{1+Cke}} = 
+\]
+Now we can plug in our equation before.
+\[
+\dot{x}\ddot{x}+\dot{y}\ddot{y} = 0
+\]
+We have
+\[
+\ddot{x}\dot{x} + Cke\dot{x}\paren{ Cke\paren{\Ddot{x} + \frac{kv_0}{1+Cke}}} = 0
+\]
+Simplifying
+\[
+\ddot{x}\dot{x} + \paren{Cke}^2\dot{x}\ddot{x} + \frac{Ck^2ev_0\dot{x}}{1+Cke} = 0
+\]
+We can factor
+\[
+\dot{x}\paren{\ddot{x}+C^2k^2e^2\ddot{x} + \frac{Ck^2ev_0}{1+Cke}} = 0
+\]
+Therefore we are left with
+\[
+\ddot{x}+C^2k^2e^2\ddot{x} + \frac{Ck^2ev_0}{1+Cke} = 0
+\]
+Therefore the acceleration is
+\[
+\ddot{x} = -\paren{\frac{Ck^2ev_0}{1+Cke}}\paren{\frac{1}{1+C^2k^2e^2}}
+\]
+
+\textcolor{blue}{The final result is erroneous due to algebraic error in happened when substitution happened. And the acceleration in the $y$ direction was left out in the midst of these laborious algebraic details. The overall outline is correct. If the algebra was carefully carried out, I should obtain the following
+\[
+\ddot{x} = -Cke\ddot{y} \quad \ddot{y} = \paren{\frac{Cke}{\paren{1+C^2k^2e^2}^2}}kv_0^2
+\]}
+
+Now we think of it as a free falling object following the same trajectory, released from $kx=1$ and we want the acceleration at $kx=0$.
+
+In this case, we use energy conservation. We know that the potential energy and the kinetic energy has to be conserved, then we know the energy at $kx=1$ is
+\[
+mgy_1 = mgCe
+\]
+And the potential energy at $kx=0$ is
+\[
+mgy_0 = mgC
+\]
+And the difference is the kinetic energy gained
+\[
+\frac{K_E}{m} = gC\paren{e-} = \frac{1}{2}v^2
+\]
+Now we can express speed as
+\[
+v=\sqrt{2gC\paren{e-1}}
+\]
+We know that the velocity component has the following relationship
+\[
+\dot{y}^2 + \dot{x}^2 = 2gC\paren{e-1}
+\]
+We have this relationship from before, substituting $kx=0$, we have
+\[
+\dot{y} = Ck\dot{x}
+\]
+Therefore
+\[
+\dot{x}^2\paren{1+C^2k^2} = 2gC\paren{e-1}
+\]
+And the $x$ component is
+\[
+\dot{x} = \sqrt{\frac{2gC\paren{e-1}}{1+C^2k^2}}
+\]
+The acceleration can be evaluated similarly, we would obtain 
+\[
+\ddot{x} = -\paren{\frac{Ck^2\sqrt{2gC\paren{e-1}}}{1+Ck}}\paren{\frac{1}{1+C^2k^2}}
+\]
+With the expression for $\ddot{x}$ and $\dot{x}$, and their relationship with $\dot{y}$, we can simply expressed the velocity and acceleration as
+\[
+\mathbf{v} = \dot{x}\unx + \dot{y}\uny
+\]
+\[
+\mathbf{a} = \ddot{x}\unx + \ddot{y}\uny
+\]
+This is true for both cases.
+
+\textcolor{blue}{Since the algebra was erroneous in the previous question, this question was consequently wrong. But what I obtained for the speed in $x$ and $y$ direction is correct, the problem comes when I was evaluating the acceleration. Specifically, the following equation was not solved properly
+\[
+\dot{x}\ddot{x} + \dot{y}\lambda\paren{\ddot{x}+k\dot{x}^2}=-g\dot{y}
+\]
+The system of equations was not solved appropriately, and if the algebra were to be carried out carefully, I should obtain the acceleration as
+\[
+\ddot{x} = \frac{-g\lambda}{1+\lambda^2}\frac{1+\paren{2e-1}\lambda^2}{1+\lambda^2}, \quad \lambda = Ck
+\]
+And the $y$ component of the acceleration is
+\[
+\ddot{y} = \lambda k \dot{x}^2 + \lambda\ddot{x} 
+\]
+Where the speed of $x$ is as above,
+\[
+\dot{x}^2 = \frac{2gC\paren{e-1}}{1+\lambda^2}
+\]}
 
 \section{Vector Kinematics, Encore: Constrained Motion}
 
 \subsection{1 Circle, 1 particle, in a hurry}
+A particle is moving counterclockwise in a circle of radius 5 m centered at the origin of frame $S$, but \textit{not} at a constant speed. As the particle transits through the point $(-3, 4)$, its speed is $2\sqrt{10}$ m/s.
+
+\begin{enumerate}
+    \item[(a)] If its acceleration at that same moment is
+    \[
+    \vec{a} = -10 \, \text{m/s}^2 \, \hat{y},
+    \]
+    then at that moment, is the particle speeding up, slowing down, or neither? If its speed is changing, at what rate is it changing?
+    
+    To determine whether the particle is speeding up, I'll start by finding the unit tangent and normal vectors at the point \((-3, 4)\) on the circle.
+
+The circle is defined by \( x^2 + y^2 = 25 \). Then the position vector with respect to \(\theta\) is given
+
+\[
+x = 5 \cos \theta, \quad y = 5 \sin \theta
+\]
+
+At the point \((-3, 4)\),  we have
+
+\[
+\cos \theta = \frac{x}{5} = \frac{-3}{5}, \quad \sin \theta = \frac{y}{5} = \frac{4}{5}
+\]
+
+This places \(\theta\) in the second quadrant, which is consistent with the given position.
+
+For counterclockwise motion, the unit tangent vector \(\mathbf{T}\) is
+
+\[
+\mathbf{T} = \left( -\sin \theta, \cos \theta \right)
+\]
+
+Substituting the values
+
+\[
+\mathbf{T} = \left( -\frac{4}{5}, -\frac{3}{5} \right)
+\]
+
+Given the acceleration vector
+
+\[
+\mathbf{a} = \left( 0, -10 \right) \, \text{m/s}^2
+\]
+
+To find the tangential acceleration \( a_T \), I'll compute the dot product of the acceleration vector \(\mathbf{a}\) and the unit tangent vector \(\mathbf{T}\)
+
+\[
+a_T = \mathbf{a} \cdot \mathbf{T} = \left( 0 \right) \left( -\frac{4}{5} \right) + \left( -10 \right) \left( -\frac{3}{5} \right) = 0 + 6 = 6 \, \text{m/s}^2
+\]
+
+Since \( a_T > 0 \), the particle is \textbf{speeding up} at a rate of \( 6 \, \text{m/s}^2 \).
+
+    \item[(b)] Same original setup---particle transits through the point $(-3, 4)$, its speed is $2\sqrt{10}$ m/s---but this time I tell you it’s speeding up at a rate of 8 m/s$^2$. Find the acceleration of the particle.
+
+
+Since the particle is moving counterclockwise along the circle \( x^2 + y^2 = 25 \), I can parameterize the position using the angle \(\theta\)
+
+\[
+x = 5 \cos \theta, \quad y = 5 \sin \theta
+\]
+
+At the point \((-3, 4)\), I can find \(\theta\) by
+
+\[
+\cos \theta = \frac{x}{5} = \frac{-3}{5}, \quad \sin \theta = \frac{y}{5} = \frac{4}{5}
+\]
+
+This places \(\theta\) in the second quadrant, which is consistent with the given position.
+
+The unit tangent vector \(\mathbf{T}\) for counterclockwise motion is
+
+\[
+\mathbf{T} = \left( -\sin \theta, \cos \theta \right)
+\]
+
+Substituting the values
+
+\[
+\mathbf{T} = \left( -\frac{4}{5}, -\frac{3}{5} \right)
+\]
+
+The unit normal vector \(\mathbf{N}\) is
+
+\[
+\mathbf{N} = \left( -\cos \theta, -\sin \theta \right)
+\]
+
+Which gives
+
+\[
+\mathbf{N} = \left( \frac{3}{5}, -\frac{4}{5} \right)
+\]
+
+Given that the particle is speeding up at a rate of \(8 \, \text{m/s}^2\), the tangential acceleration is
+
+\[
+a_T = 8 \, \text{m/s}^2
+\]
+
+The normal acceleration is calculated using
+
+\[
+a_N = \frac{v^2}{r}
+\]
+
+With \(v = 2\sqrt{10} \, \text{m/s}\) and \(r = 5 \, \text{m}\)
+
+\[
+a_N = \frac{(2\sqrt{10})^2}{5} = \frac{40}{5} = 8 \, \text{m/s}^2
+\]
+
+So, both the tangential and normal accelerations are \(8 \, \text{m/s}^2\).
+
+The total acceleration \(\mathbf{a}\) is the sum of the tangential and normal components
+
+\[
+\mathbf{a} = a_T \mathbf{T} + a_N \mathbf{N}
+\]
+Plugging in the values
+
+\[
+\mathbf{a} = 8 \left( -\frac{4}{5}, -\frac{3}{5} \right) + 8 \left( \frac{3}{5}, -\frac{4}{5} \right)
+\]
+
+Simplifying we have,
+
+\begin{align*}
+a_x &= 8 \left( -\frac{4}{5} \right) + 8 \left( \frac{3}{5} \right) = -\frac{32}{5} + \frac{24}{5} = -\frac{8}{5} \\
+a_y &= 8 \left( -\frac{3}{5} \right) + 8 \left( -\frac{4}{5} \right) = -\frac{24}{5} - \frac{32}{5} = -\frac{56}{5}
+\end{align*}
+
+
+Therefore, the acceleration vector is
+
+\[
+\mathbf{a} = \left( -\frac{8}{5}, -\frac{56}{5} \right) \, \text{m/s}^2
+\]
+
+Converting to decimal form
+
+\[
+\mathbf{a} = \left( -1.6, -11.2 \right) \, \text{m/s}^2
+\]
+
+So, the acceleration of the particle is \(-1.6 \, \text{m/s}^2\) in the \(x\)-direction and \(-11.2 \, \text{m/s}^2\) in the \(y\)-direction. And since we are moving in counterclockwise, this is speeding up. 
+    
+
+
+\end{enumerate}
 
 
 \subsection{Osculating Circles}
@@ -126,28 +425,77 @@ As discussed in class, we can use kinematics to solve a particular geometry prob
 
     You could do this problem just with what you know kinematically about how the velocity and acceleration are related for uniform circular motion, but instead, try to do it by differentiating the equation of the circle with respect to \( t \) a couple of times, interpreting what you get, and applying other constraints (e.g., that \( \dot{x}(t)^2 + \dot{y}(t)^2 = v^2 \) is constant in this problem). In general, you may not have physical intuition about how these vectors’ magnitudes are related on arbitrary curves under arbitrary conditions, so it’s good to practice a more generalizable method in a situation where you can obtain the answer through other means, just so you can gut-check your usage of this more general (and potentially more unfamiliar) method.
 
-    The velocity can simply be written as, with $v_0$ being the constant speed.
+    We know that
     \[
-    \mathbf{v} = -R\omega\sin\omega t \unx + R\omega\cos\omega t\uny
-    \]
-    Where $v_0 = R\omega$. And the acceleration is
-    \[
-    \mathbf{v} = -R\omega^2\cos\omega t \unx - R\omega^2\sin\omega t\uny
+    x^2 + y^2 = R
     \]
     And the radius of the osculating circle is $R$. We can also obtain this by doing implicit differentiation
     \[
-    2x\dot{x} + 2y\dot{y} = 0
+    x\dot{x} + y\dot{y} = 0
+    \]
+    Keep doing the same thing, we have
+    \[
+    \dot{x}^2+x\ddot{x} + \dot{y}^2 + \ddot{y} = 0
     \]
     We also know that the magnitude of the velocity is constant, so
     \[
     \dot{x}^2+\dot{y}^2 = v_0^2
     \]
-    This means
+    This simplifies to 
+    \[
+    v_0^2 + x\ddot{x} + y\ddot{y} = 0
+    \]
+    We also have the following from differentiating the relationship of speed. 
+    \[
+    \dot{x}\ddot{x}+\dot{y}\ddot{y} = 0
+    \]
+    Since we are at the angle $\theta = \frac{2\pi}{3}$, we can writhe the velocity vector as
+    \[
+    \dot{x} = -v\sin\theta = \frac{-\sqrt{3}v}{2}
+    \]
+    \[
+    \dot{y} = v\cos\theta = \frac{-v}{2}
+    \]
+    And the $x$,$y$ by
+    \[
+    x = R\cos\theta = -\frac{R}{2} \quad y = R\sin\theta = \frac{\sqrt{3}R}{2}
+    \]
+    We can substitute them in to obtain
     \[
     x\dot{x}+y\dot{y} = 0
     \]
-    We can solve this to obtain the same result.
+    If we use this information for our relationship with acceleration and velocity, we have
+    \[
+    \ddot{y}=\frac{-\dot{x}}{\dot{y}}\ddot{x} = -\sqrt{3}\ddot{x}
+    \]
+    This gives us
+    \[
+    v_0^2 + x\ddot{x} - \sqrt{3}y\ddot{x}=0
+    \]
+    We can therefore substitute $x,y$ in and find that
+    \[
+    \ddot{x} = \frac{v^2}{2R} \quad \ddot{y} = -\sqrt{3}\ddot{x}
+    \]    
 
+    The velocity and acceleration vector can be written as
+    \[
+    \mathbf{v} = \dot{x}\unx + \dot{y}\uny
+    \]
+    \[
+    \mathbf{a} = \ddot{x}\unx + \ddot{y}\uny
+    \]
+    Where $\dot{x},\dot{y}, \ddot{x},\ddot{y}$ is previously defined. 
+    
+    The radius of the osculating circle $\rho$ is given by
+    \[
+    \rho = \frac{\abso{\mathbf{v}^2}}{\mathbf{a}}
+    \]
+    Substituting our expressions in, we will obtain
+    \[
+    \rho = \frac{v^3}{\frac{v^3}{R}} = R
+    \]
+    Which is what we would expect when a particle is travling in a circular path. 
+    
     \item[(b)] Now take a particle moving at constant speed \( v_0 \) along the curve \( y = \cos x + 3 \) such that its \(x\)-coordinate increases continuously with time and such that the particle is at \( (x = 0, y = 4) \) when \( t = 0 \) (at negative times, the particle was passing through negative-\(x\) values).
 
     \begin{enumerate}
@@ -161,8 +509,260 @@ As discussed in class, we can use kinematics to solve a particular geometry prob
         \item[(ii)] If the frame in which the motion is observed to have this constant speed \( v_0 \) along this curve is inertial, then is a frame that moves along with the particle inertial? Justify your answer.
     \end{enumerate}
 \end{enumerate}
+\section{2}
+
+\begin{enumerate}
+
+\item \textbf{1.37} A student kicks a frictionless puck with initial speed \( v_0 \), so that it slides straight up a plane that is inclined at an angle \( \theta \) above the horizontal. 
+\begin{itemize}
+    \item (a) Write down Newton’s second law for the puck and solve to give its position as a function of time.
+
+    By the Newton's Second Law, we have
+    \[
+    m\mathbf{a} = m\mathbf{g} + \mathbf{F}_N
+    \]
+    The net force is the sum of Force of Gravity and the normal force. But we know that the part of the normal force points opposite direction of the gravity. 
+
+    If we let the direction perpendicular to the surface of the slide as $\unx$ and the direction of the normal force as the direciton of $\uny$, we can simplify our equations to
+    \[
+    \mathbf{a} = g\sin\theta \unx
+    \]
+    We see that this is a scalar, and is only in the $\unx$ direction. Therefore we can simply write the position as a function of time as
+    \[
+    x(t) = x_0 + v_0 t + \frac{1}{2}at^2
+    \]
+
+    
+    \item (b) How long will the puck take to return to its starting point?
+
+    We can just think of this as a straight up and down motion but with a different gravity, we call it $g_e$. The effective gravity is given by
+    \[
+    \mathbf{g} = g\sin\theta\unx
+    \]
+    We can now just use the same formula to obtain the time for up and down motion and the time it takes to return to the starting point
+    \[
+    t = \frac{2v_0}{g_e}
+    \]
+    Here, $v_0$ is just the initial velocity. 
+\end{itemize}
+
+\item \textbf{1.38} You lay a rectangular board on the horizontal floor and then tilt the board about one edge until it slopes at angle \( \theta \) with the horizontal. Choose your origin at one of the two corners that touch the floor, the \(x\) axis pointing along the bottom edge of the board, the \(y\) axis pointing up the slope, and the \(z\) axis normal to the board. You now kick a frictionless puck that is resting at \( O \) so that it slides across the board with initial velocity \( (v_{ox}, v_{oy}, 0) \). Write down Newton’s second law using the given coordinates and then find how long the puck takes to return to the floor level and how far it is from \( O \) when it does so.
+
+As always, the N2L gives us
+\[
+m\mathbf{a} = \mathbf{N}+ m\mathbf{g}
+\]
+We want to choose our axis such that the both $\unx$ and $\uny$ axis is parallel to the surface of the slope. We let $\uny$ direction be the direction pointing up the hill. In this case, we can define the effective gravity as the previous question
+\[
+\mathbf{g}_e = -g\sin\theta\uny
+\]
+In this case, the $\unx$ direction experiences no acceleration. Therefore when we account for the time it takes the puck to return to the floor, we have the exact same expression as previous question except for one term.
+\[
+t = \frac{2v_{0y}}{g_e}
+\]
+Here $v_{0y}$ is the component of $v_0$ in the $y$ direction.
 
 
+
+\item \textbf{1.39} A ball is thrown with initial speed \( v_0 \) up an inclined plane. The plane is inclined at an angle \( \phi \) above the horizontal, and the ball’s initial velocity is at an angle \( \theta \) above the plane. Choose axes with \( x \) measured up the slope, \( y \) normal to the slope, and \( z \) across it. Write down Newton’s second law using these axes and find the ball’s position as a function of time. Show that the ball lands a distance 
+\[
+R = \frac{2v_0^2 \sin \theta \cos(\theta + \phi)}{g \cos^2 \phi}
+\]
+from its launch point. Show that for given \( v_0 \) and \( \phi \), the maximum possible range up the inclined plane is
+\[
+R_{max} = \frac{v_0^2}{g(1 + \sin \phi)}.
+\]
+
+First of all, we can write 
+
+
+\end{enumerate}
+
+\section{Motion in \(\mathbf{E}\) and \(\mathbf{B}\) fields}
+
+
+
+\begin{itemize}
+    \item Work out the example of how you generate equations of motion (ODEs) from Newton's Second Law (N2L) and initial conditions for a particle injected into a uniform \(\mathbf{B}\) field with arbitrary initial velocity. This is done (slightly differently) both in Section 2.5 of Taylor and as Example 2.10 in MT5.
+    
+    \item \textbf{NOTE:} When you hit Taylor’s digression into complex exponentials, just stop and switch to MT5. We can talk about the whole complex number thing in class or my office if people are interested, but there’s a more straightforward way to tackle simple systems of coupled ODEs (namely how MT5 does it), and in the interest of time, we can’t cover every technique in every textbook.
+    
+    \item T1 2.55 (this is working out the general motion when you have crossed uniform \(\mathbf{E}\) and \(\mathbf{B}\) fields and a particle is injected perpendicular to both of them)
+\end{itemize}
+A charged particle of mass \( m \) and positive charge \( q \) moves in uniform electric and magnetic fields, \( \mathbf{E} \) pointing in the \( y \) direction and \( \mathbf{B} \) in the \( z \) direction (an arrangement called “crossed \(\mathbf{E}\) and \(\mathbf{B}\) fields”). Suppose the particle is initially at the origin and is given a kick at time \( t = 0 \) along the \( x \)-axis with \( v_x = v_{x0} \) (positive or negative). 
+
+\begin{enumerate}
+    \item[(a)] Write down the equation of motion for the particle and resolve it into its three components. Show that the motion remains in the plane \( z = 0 \).
+
+   
+    \item[(b)] Prove that there is a unique value of \( v_{x0} \), called the drift speed \( v_{dr} \), for which the particle moves undeflected through the fields. (This is the basis of velocity selectors, which select particles traveling at one chosen speed from a beam with many different speeds.)
+    
+    \item[(c)] Solve the equations of motion to give the particle’s velocity as a function of \( t \), for arbitrary values of \( v_{x0} \). \textit{Hint: The equations for \( (v_x, v_y) \) should look very like Equations (2.68) except for an offset of \( v_x \) by a constant. If you make a change of variables of the form \( u_x = v_x - v_{dr} \) and \( u_y = v_y \), the equations for \( (u_x, u_y) \) will have exactly the form (2.68), whose general solution you know.}
+    
+    \item[(d)] Integrate the velocity to find the position as a function of \( t \) and sketch the trajectory for various values of \( v_{x0} \).
+
+     We know that 
+    \[
+    \mathbf{F}_B = q\mathbf{v}\times\mathbf{B}
+    \]
+    And \textbf{B} points in only $\unz$, we will use $B_0$ to denote the magnitude. Now, the cross product is
+    \[
+    \mathbf{F}_B = \paren{qv_x\unx + qv_y\uny + qv_z\unz} \times B_0\unz
+    \]
+    This gives us
+    \[
+    \mathbf{F}_B = qB_0\paren{v_y\unx - v_x\uny}
+    \]  
+    And the E field exerts force, with magnitude $E_0$, in $\uny$ direction
+    \[
+    \mathbf{F}_E = qE_0\uny
+    \]
+    We can find the net force
+    \[
+    \mathbf{F} = qB_0v_y\unx - q\paren{E_0 - B_0v_x}\uny
+    \]
+    We have the ODE by N2L
+    \[
+    \begin{cases}
+        m\dot{v_x} = qB_0v_y\\
+        m\dot{v_y} = - qB_0v_x + qE_0
+    \end{cases}
+    \]
+    If we define $\omega  = \frac{qB_0}{m}$, then we have
+    \[
+    \dot{v_y} = -\omega v_x + \omega \frac{E_0}{B_0}
+    \]
+    \[
+    \dot{v_x} = \omega v_y
+    \]
+    And we can differentiate $\dot{v_x}$ on both side to get
+    \[
+    \Ddot{v_x} = \omega\dot{v_y} = -\omega^2 v_x +\omega^2\frac{E_0}{B_0}
+    \]
+    We may eyeball the solution
+    \[
+    v_x(t) = A\cos\omega t + B\sin\omega t + \frac{\omega^2 E_0t}{B_0}
+    \]
+    \[
+    \dot{v}_x(t=0) = B + \frac{\omega^2 E_0t}{B_0} = 0
+    \]
+    \[
+    v_y(t) = C\cos\omega t + D\sin\omega t 
+    \]
+    \[
+    \dot{v}_y(t) = -C\omega\sin\omega t + D\omega\cos\omega t
+    \]
+    If we throw in $v_x = v_{x0}$ at $t=0$, we can see that
+    \[
+    A = v_{x0}
+    \]
+    And if we differentiate both of the equation, we can set it equal to the ODE we set up, evaluating it at $t=0$ yielding
+    \[
+    D\omega = -\omega v_{x0} + \frac{\omega^2E_0}{B_0}
+    \]
+    This gives $D = \frac{\omega E_0}{B_0}$. And with this knowledge, we have the expression for velocity
+    \[
+    \begin{cases}
+        v_x(t) = v_{x0}\cos\omega t -\frac{\omega^2 E_0 }{B_0}\sin\omega t + \frac{\omega^2 E_0t}{B_0}\\
+        v_y(t) = \paren{v_{x0} - \frac{\omega E_0}{B_0}}\sin\omega t
+    \end{cases}
+    \]
+    From this we can tell the drift speed is when the $y$ direction motion is completely killed off, and is given by 
+    \[
+    \mathbf{v}_{dr} = \omega\frac{E_0}{B_0}\unx
+    \]
+    The position vector can be obtained by inteegrating the velocity. And this will give us
+    \[
+    \mathbf{r}(t) = \begin{cases}
+        r_x(t) = \frac{v_{x0}}{\omega}\sin\omega t +\frac{\omega E_0}{ B_0}\cos\omega t+ \frac{\omega^2E_0t^2}{2B_0} + x_0\\
+        r_y(t) = \paren{\frac{v_{x0}}{\omega} - \frac{E_0}{B_0}}\cos\omega t + y_0
+    \end{cases}
+    \]
+    
+    
+\end{enumerate}
+
+\section{Textbook Problems}
+\subsection{2.5}
+Suppose that a projectile which is subject to a linear resistive force is thrown vertically down with a speed $v_{y_0}$ which is greater than the terminal speed $v_{ter}$. Describe and explain how the velocity varies with time, and make a plot of $v_y$ against $t$ for the case that $v_{y_0} = 2v_{ter}$.
+
+The ball will see a drastic decrease in velocity at the begining phase of the fall since its initial velocity is twice that of the terminal velocity. But then as the ball slows down, the drag decreases and the ball will be indefinitely close to the terminal velocity in an exponential decay with an asymptote at the terminal velocity.  
+
+\subsection{2.28}
+A mass $m$ has speed $v_0$ at the origin and coasts along the $x$ axis in a medium where the drag force is $F(v) = -cv^{3/2}$. Use the "vdv/dx rule" (2.86) in Problem 2.12 to write the equation of motion in the separated form $m \, v \, dv / F(v) = dx$, and then integrate both sides to give $x$ in terms of $v$ (or vice versa). Show that it will eventually travel a distance $2m\sqrt{v_0}/c$.
+
+By N2L, we can acquire the following relationship
+\[
+m\dot{v} = -cv^{\frac{3}{2}}
+\]
+We can rewrite the expression for acceleration as
+\[
+mv\dydx{v}{x} = -cv^{\frac{3}{2}}
+\]
+Now we perform a separation of variables
+\[
+-\int_{v_0}^{0}\frac{m}{c}\frac{1}{\sqrt{v}}\,dv = \int\,dx
+\]
+Now we can integrate the on both side to get
+\[
+x = \frac{2m\sqrt{v_0}}{c}
+\]
+
+
+
+\subsection{2.41}
+A baseball is thrown vertically up with speed $v_0$ and is subject to a quadratic drag with magnitude $f(v) = cv^2$. Write down the equation of motion for the upward journey (measuring $y$ vertically up) and show that it can be rewritten as $\dot{v} = -g[1 + (v/v_{ter})^2]$. Use the "v dv/dx rule" (2.86) to write $\dot{v}$ as $v \, dv/dy$, and then solve the equation of motion by separating variables (put all terms involving $v$ on one side and all terms involving $y$ on the other). Integrate both sides to give $y$ in terms of $v$, and hence $v$ as a function of $y$. Show that the baseball's maximum height is
+
+\[
+y_{\text{max}} = \frac{v_{ter}^2}{2g} \ln\left(\frac{v_{ter}^2 + v_0^2}{v_{ter}^2}\right).
+\]
+
+If $v_0 = 20 \, \text{m/s}$ (about 45 mph) and the baseball has the parameters given in Example 2.5 (page 61), what is $y_{\text{max}}$? Compare with the value in a vacuum.
+
+By N2L, we can set up the following equation
+\[
+ma = -mg-cv^2
+\]
+Since both the gravity and the drag points in the same direction when going up, this is the relationship. Now, we can rewrite the acceleration
+\[
+a = -g - \frac{c}{m}v^2
+\]
+We know that the terminal velocity is when the drag is equal to the gravitational force. So we have
+\[
+mg = cv^2
+\]
+Therefore
+\[
+v_{ter} = \frac{mg}{c}
+\]
+Now, we can rewrite the expression for acceleration with this
+\[
+a = -g - g\frac{v^2}{v_{ter}^2}
+\]
+Do some simple factoring, we have
+\[
+a = -g\paren{1+ \frac{v^2}{v_{ter}^2}}
+\]
+Now, write acceleration into another form
+\[
+v\frac{dv}{dy} =  -g\paren{1+ \frac{v^2}{v_{ter}^2}}
+\]
+And we can solve the ODE by separation of variable
+\[
+-\frac{1}{g}\int_{v_0}^{0}\frac{v\,dv}{\paren{1+ \frac{v^2}{v_{ter}^2}}} = \int_{0}^{y_{max}}\,dy
+\]
+We can swap the bound of integration to get rid of the negative. 
+\[
+y_{max} = \frac{1}{g}\int_{0}^{v_0}\frac{v\,dv}{\paren{1+ \frac{v^2}{v_{ter}^2}}}
+\]
+After evaluating the integral with a $u$-substitution, we obtain
+\[
+y_{max} = -\frac{v_{ter}^2}{2g}\ln\paren{\frac{1}{1+\frac{v_0^2}{v_{ter}^2}}}
+\]
+The negative sign goes into the natural log, and after some manipulation
+\[
+y_{max} = \frac{v_{ter}^2}{2g}\ln\paren{\frac{v^2_{ter}+v_0^2}{v_{ter}^2}}
+\]
 
 
 \end{document}
