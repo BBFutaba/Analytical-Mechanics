@@ -1,0 +1,559 @@
+\documentclass[11pt,letterpaper]{article}
+\pagestyle{empty}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{latexsym, epsfig, ulem, cancel, multicol, hyperref}
+\usepackage{graphicx, tikz, subfigure,pgfplots}
+\usepackage[margin=1in]{geometry}
+\setlength{\parindent}{0pt}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\setlength{\parskip}{1ex}
+
+\newcommand{\T}[0]{\top}
+\newcommand{\F}[0]{\bot}
+\newcommand{\liminfty}[1]{\lim_{#1 \to \infty}}
+\newcommand{\limzero}[1]{\lim_{#1 \to 0}}
+\newcommand{\limto}[1]{\lim_{#1}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\odd}[0]{\mathbb{Z} - 2\mathbb{Z}}
+\newcommand{\lineint}[1]{\int_{#1}}
+\newcommand{\pypx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\divg}{\nabla \cdot}
+\newcommand{\curl}{\nabla \times}
+\newcommand{\dydx}[2]{\frac{\text{d} #1}{\text{d} #2}}
+\newcommand{\sqbkt}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\tribkt}[1]{\left< #1 \right>}
+\newcommand{\abso}[1]{\left|#1 \right|}
+\newcommand{\zero}{\{0\}}
+\newcommand{\then}{\rightarrow}
+\newcommand{\nonneg}{\Z^+ \cup \{0\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\union}[2]{\bigcup_{#1}^{#2}}
+\newcommand{\inter}[2]{\bigcap_{#1}^{#2}}
+\newcommand{\openclose}[1]{\left( #1 \right]}
+\newcommand{\closeopen}[1]{\left[ #1 \right)}
+\newcommand{\compo}[2]{#1 e^{i #2}}
+\newcommand{\laplase}{\bigtriangleup}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\braket}[2]{\left< #1 \mid #2 \right>}
+\newcommand{\ketbra}[2]{\left| #1 \right> \left< #2 \right|}
+\newcommand{\ketpsit}{\ket{\psi(t)}}
+\newcommand{\ketphit}{\ket{\phi(t)}}
+\newcommand{\ham}{\mathbf{H}}
+\newcommand{\unx}{\hat{\mathbf{x}}}
+\newcommand{\uny}{\hat{\mathbf{y}}}
+\newcommand{\uns}{\hat{\mathbf{s}}}
+\newcommand{\unr}{\hat{\mathbf{r}}}
+\newcommand{\untheta}{\hat{\boldsymbol\theta}}
+\newcommand{\unphi}{\hat{\boldsymbol\phi}}
+\newcommand{\dfl}{\text{d}}
+
+\newcommand{\wsnumber}{1}
+\newcommand{\wstopic}{Vectors}
+\pgfplotsset{
+    every linear axis/.append style={
+       axis x line=center,
+       axis y line=center,
+       xlabel={$x$},
+       ylabel={$y$}
+    },
+    every axis plot/.append style={thick,mark=none}
+}
+\tikzset{
+    point/.style={circle,draw,fill,minimum width=0.3ex,inner sep=0pt,outer sep=0pt},
+    every label/.append style={black}
+}
+
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{multirow, multicol}
+\usepackage{tikz}
+\pagestyle{fancy}
+\fancyhead[RO]{Dennis Li}
+\fancyhead[LO]{Analytical Mechanics }
+\usepackage{comment}
+\newif\ifshow
+\showfalse
+
+\ifshow
+  \newenvironment{solution}{\textbf{Solution.}}{}
+\else
+  \excludecomment{solution}
+\fi
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\usepackage{comment}
+
+
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\begin{center}
+\ifshow
+  \textbf{\Large Problem Set 01 Solution}\\
+\else
+  \textbf{\Large Problem Set 01}\\
+\fi
+Instructor \\ Prof. Gabe\\
+\end{center}
+
+\hrule
+
+\vspace{0.2cm}
+
+\section{Rock it}
+\subsection*{The Rocket Equation}
+\paragraph{Solution}
+\begin{enumerate}[i.]
+    \item Consider a bag around the rocket and the ejected mass $\text{d}m$, we can write the total momentum inside the bag as
+    \[
+    \mathbf{p}(t) = \paren{M+\text{d}m}\mathbf{v}(t)
+    \]
+    Where $\mathbf{v}$ is the speed of the rocket in the lab frame. After the ejection, we have
+    \[
+    \mathbf{p}(t+\text{d}t) = \text{d}m\paren{\mathbf{u}+\mathbf{v}+\text{d}\mathbf{v}} + M\paren{\mathbf{v+\text{d}\mathbf{v}}}
+    =\mathbf{u} +\mathbf{v}\text{d}m + M\mathbf{v}+M\text{d}\mathbf{v}
+    \]
+    Now we can find $\dfl\mathbf{p}$ as
+    \[
+    \dfl\mathbf{p} = \mathbf{u}\text{d}m + M\text{d}\mathbf{v} = \mathbf{F}_{ext}\cdot\dfl t = 0
+    \]
+    This equates to 0 since there are no external force in this bag system. Now we have
+    \[
+    \mathbf{u}\dydx{m}{t} + M\dydx{\mathbf{v}}{t} = 0
+    \]
+    Or we can rewrite it as
+    \[
+    \mathbf{u}\dot{M} + M\dot{\mathbf{v}} = 0
+    \]
+    To solve it, we can write it as
+    \[
+    -M\dfl\mathbf{v} = \mathbf{u}\dfl m 
+    \]
+    We can do some moving things around
+    \[
+    \dfl\mathbf{v} = \frac{\mathbf{u}}{M}\dfl m
+    \]
+    Now we can integrate both side
+    \[
+    -\Delta\mathbf{v} = \int_{m_0}^{m_f}\frac{\mathbf{u}}{M}\dfl m = \mathbf{u}\ln\frac{m_f}{m_0}
+    \]
+    Now we move the negative sign around and let the natural log eats it and flip the fraction
+    \[
+    \Delta \mathbf{v} = \mathbf{u}\ln\frac{m_0}{m_f}
+    \]
+    If the ship is initially at rest, we simply have
+    \[
+    \mathbf{v}(t) = \mathbf{u}\ln\frac{m_0}{m(t)}
+    \]
+
+    \item This is a trivial case, the initial speed $v_0$ makes no difference in our result since it is a constant and we are only interested in the change. If you are interested in the final speed, simply subtract it from the $\Delta \mathbf{v}$, or add it to the $\mathbf{v}(t)$
+
+    \item In the case of changing mass carried and fuel carried, we are only interested in the natural log term since we want to achieve the same $\Delta \mathbf{v}$ We know that $m_0 - m_f = m_{fuel}$, and if we increased the payload by 25\%, in other word
+    \[
+    M'_0 = 1.25M_0
+    \]
+    Then to achieve the same ratio in the natural log, the final mass has to also increase by 25\%. This in turn tells us we need 25\% more fuel. The same logic is applied to that of 50\%. This is a linear increase. 
+
+    \item Consider the rocket initially at rest, we will only be interested in the relationship of change in velocity and change in position, and we know that in this case
+    \[
+    \mathbf{v}(t) = \Delta\mathbf{v}
+    \]
+    And we can simply express the relationship as
+    \[
+    \mathbf{v}(t) = \mathbf{u}\ln\frac{m_0}{M(t)}
+    \]
+    Then, we can integrate
+    \[
+    \mathbf{y}(t) = \int_{0}^{t} \mathbf{v}(\tau)\dfl \tau = \int_{0}^{t}\mathbf{u}\ln\frac{m_0}{M(\tau)}\dfl \tau = \int_{0}^{t}\mathbf{u}\ln\frac{m_0}{M(\tau)}\dfl\tau
+    \]
+    Without information about how mass is changing, or how the rocket is propelling, we will have to leave the result as integral
+    \[
+    \mathbf{y}(t) = \int_{0}^{t}\mathbf{u}\ln\frac{m_0}{M(\tau)}\dfl\tau
+    \]
+\end{enumerate}
+\paragraph{T1 3.10}
+\textbf{Question:} Consider a rocket (initial mass $m_0$) accelerating from rest in free space. At first, as it speeds up, its momentum $p$ increases, but as its mass $m$ decreases, $p$ eventually begins to decrease. For what value of $m$ is $p$ maximum?
+
+\textbf{Solution}
+
+We know that
+\[
+\mathbf{p}(t) = m(t)\mathbf{v}(t)
+\]
+Since we are initially at rest, we can use the relationship we established before and get
+\[
+\mathbf{p}(t) = m\mathbf{u}\ln\frac{m_0}{m}
+\]
+Where $m$ is some function of time. Now we differentiate both side with respect to mass, since that is what we care about.
+\[
+\dydx{\mathbf{p}}{m} = \dydx{}{m}\paren{ m\mathbf{u}\ln\frac{m_0}{m}}
+\]
+This is equal to
+\[
+\dydx{\mathbf{p}}{m}  = \mathbf{u}\ln\frac{m_0}{m} - m\mathbf{u}\dydx{}{m}\paren{\ln m_0 - \ln m} = \mathbf{u}\ln\frac{m_0}{m} - \mathbf{u}
+\]
+We set this equal to $0$ to find the extrema. 
+\[
+\mathbf{u}\ln\frac{m_0}{m} - \mathbf{u} = 0
+\]
+In other word
+\[
+\mathbf{u}\ln\frac{m_0}{m} = \mathbf{u}
+\]
+This means that
+\[
+\ln\frac{m_0}{m} = 1
+\]
+And this in turn gives us
+\[
+m = \frac{m_0}{e}
+\]
+This is where the maxima happens. 
+
+
+
+\paragraph{MT5 9-57}
+A rocket in outer space in a negligible gravitational field starts from rest and accelerates uniformly at $a$ until its final speed is $v$. The initial mass of the rocket is $m_0$. How much work does the rocket’s engine do?
+
+\paragraph{Solution} We know that the velocity of the rocket as a function of time is
+\[
+\mathbf{v}(t) = \mathbf{u}\ln\frac{m_0}{m(t)}
+\]
+Since we are interested in the total work done, we can simply say that velocity is a function of mass
+\[
+\mathbf{v}(m) = \mathbf{u}\ln\frac{m_0}{m}
+\]
+We know that kinetic energy is 
+\[
+K = \frac{1}{2}m\mathbf{v}^2
+\]
+And if we take the differential, with chain rule in mind, we have
+\[
+\dfl K = m\mathbf{v}\dfl \mathbf{v} + \frac{1}{2}\mathbf{v}^2\dfl m
+\]
+We can use the expression of velocity to find $\dfl v$
+\[
+\dfl \mathbf{v} = -\frac{\mathbf{u}}{m}\dfl m
+\]
+Therefore the expression for $\dfl K$ is given by 
+\[
+\dfl K =\frac{1}{2}\mathbf{v}^2\dfl m -\mathbf{u}\mathbf{v}\dfl m 
+\]
+Substitute the expression for velocity in, we have
+\[
+\dfl K =\frac{1}{2}\paren{\mathbf{u}\ln\frac{m_0}{m}}^2\dfl m - \mathbf{u}^2\ln\frac{m_0}{m}\dfl m 
+\]
+We can further simplify this expression to
+\[
+\dfl K = \paren{\ln\frac{m_0}{m}}\paren{\frac{1}{2}\ln\frac{m_0}{m}-1}\mathbf{u}^2\dfl m
+\]
+We can now integrate to find the total work done
+\[
+\int_0^{K_f} \dfl K=\mathbf{u}^2\int_{m_0}^{m_f}  \frac{1}{2}\ln^2\frac{m_0}{m} - \ln\frac{m_0}{m} \,\dfl m
+\]
+Now we can evaluate this integral, we see that the LHS is work $W$, which is what we want, the RHS gives us a massive expression. The final result is
+\[
+W = \frac{1}{2}m_f\mathbf{u}^2\ln^2\frac{m_0}{m_f}
+\]
+
+
+\section{Do not knock it til you rocket}
+Treat the following problems as variable mass problem and make it like a rocket. 
+\subsection{2 carts, some sand}
+Material is blown into cart A from cart B at a rate $b$ kilograms per second, as shown. The material leaves the chute vertically downward, so that it has the same horizontal velocity $u$ as cart B. At the moment of interest, cart A has mass $M$ and velocity $v$. Find $\frac{dv}{dt}$, the instantaneous acceleration of A.
+\begin{center}
+    \includegraphics[width=0.35\linewidth]{Pictures//PS05/KK2-4-13.png}
+\end{center}
+
+\paragraph{Solution} We will wrap a bag around the truck A with a differential amount of sand $\dfl m$ coming in. This way, we can define the momentum of A at time t as
+\[
+\mathbf{p}(t) = M\mathbf{v} + \mathbf{u}\dfl m
+\]
+Since the sand is carrying some velocity $\mathbf{u}$ as it enters. Now, when the sand land in truck A after some differential amount of time $\dfl t$, we have
+\[
+\mathbf{p}(t+\dfl t) = (M+\dfl m)\paren{\mathbf{v}+\dfl\mathbf{v}} 
+\]
+Now we can find $\dfl \mathbf{p}$ as
+\[
+\dfl \mathbf{p} = \mathbf{p}(t+\dfl t) - \mathbf{p}(t) = M\mathbf{v}+M\dfl\mathbf{v}+\mathbf{v}\dfl m - M\mathbf{v} + \mathbf{u}\dfl m
+\]
+This is simply
+\[
+\dfl \mathbf{p} = M\dfl \mathbf{v}+\mathbf{v}\dfl m -\mathbf{u}\dfl m
+\]
+This gives 
+\[
+\dfl \mathbf{p} = M\dfl \mathbf{v}+\mathbf{v}\dfl m -\mathbf{u}\dfl m = \mathbf{F}_{ext}\cdot \dfl t = 0
+\]
+We can divide both side by $\dfl t$, and obtain
+\[
+\dydx{\mathbf{p}}{t} = M\dydx{\mathbf{v}}{t}+\mathbf{v}\dydx{m}{t} -\mathbf{u}\dydx{m}{t}
+\]
+We see that $b = \dydx{m}{t}$, therefore we have
+\[
+\dydx{\mathbf{p}}{t} = M\dydx{\mathbf{v}}{t}+ b\paren{\mathbf{v - \mathbf{u}}} = 0
+\]
+We have obtained the folloing ODE
+\[
+M\dot{\mathbf{v}} + b\mathbf{v} = b\mathbf{u}
+\]
+We define $\tau = \frac{M}{b}$, and rewrite the ODE as
+\[
+\dot{\mathbf{v}} + \frac{1}{\tau}\mathbf{v} = \frac{1}{\tau}\mathbf{u}
+\]
+The solution is simply
+\[
+\mathbf{v}(t) = \mathbf{v}_0e^{-\frac{t}{\tau}} - \mathbf{u}
+\]
+
+
+
+\subsection{Growing raindrop KK2-4.24}
+A raindrop of initial mass $M_0$ starts falling from rest under the influence of gravity. Assume that the drop gains mass from the cloud at a rate proportional to the product of its instantaneous mass and its instantaneous velocity:
+\[
+\frac{dM}{dt} = k M \mathbf{v},
+\]
+where $k$ is a constant. 
+
+Show that the speed of the drop eventually becomes effectively constant, and give an expression for the terminal speed. Neglect air resistance.
+
+
+\paragraph{Solution}
+We know that
+\[
+\mathbf{p}(t) = M\mathbf{v} 
+\]
+Therefore we know that
+\[
+\dydx{\mathbf{p}}{t} = M\dydx{\mathbf{v}}{t}+\mathbf{v}\dydx{M}{t}
+\]
+Substitute what we know about the rate of change of mass, we have
+\[
+\dydx{\mathbf{p}}{t} = M\dydx{\mathbf{v}}{t}+\mathbf{v}\paren{kM\mathbf{v}} = M\dydx{\mathbf{v}}{t}+kM\mathbf{v}^2 
+\]
+We also know that
+\[
+\mathbf{F}_{ext} = M\mathbf{g} = \dydx{\mathbf{p}}{t} 
+\]
+Therefore we have obtained the following ODE
+\[
+M\dydx{\mathbf{v}}{t}+kM\mathbf{v}^2  = M\mathbf{g}
+\]
+Simplify, we have
+\[
+\dydx{\mathbf{v}}{t}+k\mathbf{v}^2  = \mathbf{g}
+\]
+We simply move stuff around to get
+\[
+\frac{1}{g-k\mathbf{v}^2}\dfl \mathbf{v} = \dfl t
+\]
+Integrating both side, we have
+\[
+\frac{1}{\sqrt{gk}}\tanh^-1\paren{\mathbf{v}\sqrt{\frac{k}{g}}} = t+ C
+\]
+We do some moving things around, and we have
+\[
+\mathbf{v}(t) = \sqrt{\frac{g}{k}}\tanh\paren{\sqrt{gk}\paren{t+C}}\, \hat{\mathbf{g}}
+\]
+We know the raindrop starts at rest, this is our initial condition. This gives
+\[
+\mathbf{v}(0) = 0 = \sqrt{\frac{g}{k}}\tanh\paren{\sqrt{gk}\paren{t+C}}\, \hat{\mathbf{g}}
+\]
+This shows that $C=0$, since there are no other solution to solve this. We have obtained the final solution
+\[
+\mathbf{v}(0) = 0 = \sqrt{\frac{g}{k}}\tanh\paren{t\sqrt{gk}}\, \hat{\mathbf{g}}
+\]
+For terminal velocity, we examine when $t\to\infty$, this gives us
+\[
+\mathbf{v}_{ter} = \sqrt{\frac{g}{k}}\, \hat{\mathbf{g}}
+\]
+
+\subsection{1 rope, 3 ways}
+\subsection{Rope Hanging}
+The rope that is hanging off the table has some length $x$, and the center of mass situates at $\frac{x}{2}$. We see that this part of the rope has mass $\lambda x$ where $\lambda$ is the linear mass density.
+
+Now, we can express the momentum at time $t$, with the center of mass moving at some speed $v$
+\[
+\mathbf{p}(t) = \lambda x v
+\]
+And after some differential amount of time, we have
+\[
+\mathbf{p}(t+\dfl t) = \lambda x v + \lambda v \dfl x
+\]
+Now we can take the difference, and get
+\[
+\dfl \mathbf{p} = \lambda v \dfl x = \mathbf{F}_{ext} \cdot \dfl t
+\]
+Here, the external force is purely gravitational, so
+\[
+\dfl \mathbf{p} = \lambda v \dfl x = \lambda x g \cdot \dfl t
+\]
+We have arrived at
+\[
+v\dydx{x}{t}= gx
+\]
+We realize that this is just
+\[
+\dot{x}^2 - gx = 0
+\]
+
+\subsubsection{MT5 9-15}
+We put a trash bag around the part of the rope that is dangling beneath the hole and a differential amount that is about to fall. Suppose the length of the rope that has fallen has length $x$, then we set up the initial momentum with some velocity $\mathbf{v}$
+\[
+\mathbf{p}(t) = \frac{M}{L_0}x\mathbf{v}
+\]
+And the momentum after a differential amount of time, here $L_0$ is the total length of the rope. The part $\dfl m$ would have joined the fall, and we can express it as
+\[
+\dfl m = \frac{M}{L_0}\dfl x
+\]
+Therefore the expression for momentum after the differential amount of time is
+\[
+\mathbf{p}(t+\dfl t) = \frac{M}{L_0}\paren{\mathbf{v} + \dfl \mathbf{v}}\paren{x + \dfl x} = \frac{M}{L_0}\paren{x\mathbf{v} + \mathbf{v}\dfl x + x\dfl \mathbf{v} + \dfl \mathbf{v}\dfl x}
+\]
+The second order differential simply vanishes, leaving only
+\[
+\mathbf{p}(t+\dfl t) = \frac{M}{L_0}\paren{\mathbf{v} + \dfl \mathbf{v}}\paren{x + \dfl x} = \frac{M}{L_0}\paren{x\mathbf{v} + \mathbf{v}\dfl x + x\dfl \mathbf{v}}
+\]
+We also realize that
+\[
+\mathbf{v} = \dydx{x}{t}
+\]
+Now we take the difference
+\[
+\dfl \mathbf{p} = \frac{M}{L_0}\paren{\mathbf{v}\dfl x  + x\dfl\mathbf{v}}
+\]
+We now include gravity, which makes it
+\[
+\frac{M}{L_0}\paren{\mathbf{v}\dfl x  + x\dfl\mathbf{v}} = \frac{M}{L_0}xg\cdot\dfl t
+\]
+This is essentially
+\[
+\mathbf{v}\dfl x  + x\dfl\mathbf{v} = xg\dfl t
+\]
+Now we substitute to express it purely in $x$, we have
+\[
+\mathbf{v}\dydx{x}{t} + x\dydx{\mathbf{v}}{t} = gx
+\]
+We This is essentially
+\[
+\dot{x}^2 + x\ddot{x} = gx
+\]
+
+We can inspect the dimension of the ODE, and realize that we need a function of $x(t) = \sqbkt{\text{m}}$, this means that the only thing can make sense to be the solution of this ODE is that
+\[
+x(t) = Agt^2
+\]
+Since this is the only combination that makes the correct dimension for our problem. Now we can shove this back into the ODE to get
+\[
+4A + 2A = 1
+\]
+This gives us the solution of the ODE
+\[
+x(t) = \frac{1}{6}gt^2 + x_0
+\]
+Where $x_0$ is our initial condition. 
+
+
+\paragraph{MT5 9-19. Chain falling onto a table}
+A chain such as the one in Example 9.2 (with the same parameters) of length $b$ and mass $\rho b$ is suspended from one end at a point that is a height $b$ above a table so that the free end barely touches the tabletop. At time $t = 0$, the fixed end of the chain is released. 
+
+Find the force that the tabletop exerts on the chain after the original fixed end has fallen a distance $x$.
+
+we put a trash bag around the table at the time moment where a differential amount of the chain is contacting the tabletop with mass $\dfl m$. We can write out the momentum of the bag assuming the center of mass is moving with some velocity $\mathbf{v}$, and the length of the rope that has contacted the table as $x$.
+
+Stuff in the bag then have momentum at time $t$
+\[
+\mathbf{p}(t) = -\mathbf{v}\dfl m
+\]
+But after a differential amount of time, since its no longer moving, it will have
+\[
+\mathbf{p}(t) = 0
+\]
+We see that
+\[
+\dfl \mathbf{p} = \mathbf{v}\dfl m
+\]
+We also know that the falling speed of the chain can be expressed as
+\[
+\mathbf{v} = \dydx{x}{t}
+\]
+Therefore, we essentially have
+\[
+\dfl \mathbf{p} = \dydx{x}{t}\dfl m = \mathbf{F}_{ext}\cdot \dfl t
+\]
+The only force that is external here is the gravity on the fallen chain that is on the table and inside the bag, therefore 
+\[
+\dydx{x}{t}\dfl m =\lambda xg \cdot \dfl t
+\]
+We also notice that 
+\[
+\dfl m = \lambda \dfl x
+\]
+So we can further rewrite our equation as
+\[
+\lambda\dydx{x}{t}\dfl x =\lambda xg \cdot \dfl t
+\]
+And move the differential of time to the other side
+\[
+\lambda \dydx{x}{t}\dydx{x}{t} = \lambda xg
+\]
+This eventually trims down to
+\[
+\dot{x}^2 = xg
+\]
+And we have
+\[
+\dot{x}^2 - gx = 0
+\]
+We find that this is exactly the same as the first rope problem. And we can sort of eyeball the solution of this ODE. It will be something that involves $gt^2$, since we need to have unit of $[\text{m}]$, so lets take a guess
+\[
+x(t) = Agt^2
+\]
+We take the first derivative and square it to get
+\[
+\dot{x}^2 = 4A^2g^2t^2
+\]
+And the second term
+\[
+gx = Ag^2t^2
+\]
+We have
+\[
+4A^2 - A = 0 = A(4A-1)
+\]
+This means that
+\[
+A = \begin{cases}
+    A = 0\\
+    A = \frac{1}{4}
+\end{cases}
+\]
+Here, we want the non-trivial solution, therefore the distance $x$ can be expressed as
+\[
+x(t) = \frac{1}{4}gt^2
+\]
+We can take the second derivative as
+\[
+\ddot{x} = a = \frac{g}{2}
+\]
+And the mass that piled up on the table is $\lambda x(t)$, therefore the normal force is simply
+\[
+F = \frac{g}{2}\cdot \lambda x(t) = \frac{\lambda}{8}g^2t^2
+\]
+
+
+\end{document}

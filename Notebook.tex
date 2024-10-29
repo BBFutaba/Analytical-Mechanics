@@ -67,11 +67,13 @@
 
 \newtheorem*{remark}{Remark}
 \title{\textbf{Analytical Mechanics}}
-\author{Dennis Li}
+\author{Dennis Li\\Instructor Prof. Gabe Perez-Giz}
 \begin{document}
 \maketitle
 \hrule
-
+\paragraph{Disclaimer} This document is a study note for a class taught by Prof. Gabe Perez-Giz, where the content of which comes dicrectly from the lectures with some personal interpretations, and is of personal use only.
+\vspace{3ex}
+\hrule
 
 \section{Newtonian Mechanics}
 To start the class off, we will re-formulate our understanding of the Newtonian mechanics, starting from revisiting the Newtons law of motion. 
@@ -85,13 +87,13 @@ The first of which is the \textbf{law of inertia}. It helps us define a framewor
 This helps us define where we can apply the second law.
 
 The second law states that if you are in an inertial reference frame and you are measuring physical parameters, the following relationship is true.
-\[
+\begin{align}
 \sum \mathbf{F}_{c} = \dydx{\mathbf{p}_{c}}{t}
-\]
+\end{align}
 Here $c$ stands for \textbf{center of mass}. And it is important that we are studying the right hand side of the equation since it leads us to the third law, which can be summarized as: For each action, there is an equal but opposite and co-linear reaction. Written as
-\[
+\begin{align}
 \mathbf{F}_{BA} = - \mathbf{F}_{BA}
-\]
+\end{align}
 This law implies that force is dependent of the reference frame, and this is why we have to make some specification in the second law. The \textbf{weak} version does not require it to be \textit{co-linear}.
 
 
@@ -100,40 +102,40 @@ Work in Progress
 
 \subsection{Convert Cartesian to Polar in 2D}
 Representation in Cartesian coordinates
-\[
+\begin{align}
 \unx(x,y)=\unx(0,0)=\unx
-\]
+\end{align}
 And the same applies to $\uny$ since Cartesian coordinates are uniform. And we can represent the position with
-\[
+\begin{align}
 \dydx{}{t}\mathbf{r}(t) = \Dot{x}\unx+\Dot{y}\uny
-\]
+\end{align}
 Now we examine what happen if we go to polar form. In polar form, the position vector is expressed simply as
-\[
+\begin{align}
 \mathbf{r}(t) = s\uns
-\]
+\end{align}
 Here, we use $s$ to define the distance from the origin in the $2D$ plane. We have to acknowledge that $\uns$ changes depending on where the position vector is, therefore it is not uniform. We have to treat it also as a function of time. The velocity is defined the same way as before, by taking the derivative with respect to time. We obtain 
-\[
+\begin{align}
 \Dot{\mathbf{r}} = \Dot{s}\uns + s\Dot{\uns} 
-\]
+\end{align}
 Here, we have to find a way to express this in terms of $\uns$ and $\unphi$. First, we would define our unit polar vectors.
-\[
+\begin{align}
 \uns = \cos\phi\unx + \sin\phi\uny
-\]
+\end{align}
 Here, $\phi$ is a function of time. And since $\unr \perp \unphi$, we can use the fact that $\unr \cdot \unphi = 0$ to find $\unphi$. It will be
-\[
+\begin{align}
 \unphi = -\sin\phi\unx + \cos\phi\uny
-\]
+\end{align}
 Now, if we take their time derivative, we have
-\[
+\begin{align}
 \Dot{\uns} = -\Dot{\phi}\sin\phi\unx + \Dot{\phi}\cos\phi\uny = \Dot{\phi}\unphi
-\]
-\[
+\end{align}
+\begin{align}
 \Dot{\unphi} = -\Dot{\phi}\cos\phi\unx - \Dot{\phi}\sin\phi\uny = - \Dot{\phi}\uns
-\]
+\end{align}
 The result is obtained from doing some substitution. And if we substitute our result into the original expression for $\Dot{\mathbf{r}}$, we have
-\[
+\begin{align}
 \Dot{\mathbf{r}} = \Dot{s}\uns + s\Dot{\phi}\unphi
-\]
+\end{align}
 This completes our description to the velocity in polar form. And if we take the time derivative again, we will have the expression for acceleration. Here's how
 \begin{align*}
     \dydx{}{t}\Dot{\mathbf{r}} &= \dydx{}{t}\paren{\Dot{s}\uns + s\Dot{\phi}\unphi} \\
@@ -148,31 +150,32 @@ This completes our description to the velocity in polar form. And if we take the
 
 \subsection{Convert Cartesian to Cylindrical in 3D}
 
+
 \subsection{Dot Products and Cross Products}
 There are several things we need to know about these products. First, if we have two vector $\mathbf{a}$ and $\mathbf{b}$. Think of it like follows
-\[
+\begin{align}
 \mathbf{a}\cdot\mathbf{b} = \abso{\mathbf{b}}\paren{\mathbf{a}\cdot \Hat{\mathbf{b}}}
-\]
+\end{align}
 Think of it like projecting one vector onto another and re-scaling it using the magnitude. Here, $\hat{\mathbf{b}}$ is the \textit{unit vector} of $\mathbf{b}$, or the normalized $\mathbf{b}$. This way you have a more intuitive understanding of it.
 
 As for the cross product, it creates a third vector that is perpendicular to the plane created by the original 2 vectors. Let us write it out as follows
-\[
+\begin{align}
 \mathbf{a}\times \mathbf{b} = \mathbf{c} \quad \mathbf{a}\perp \mathbf{c} \vee \mathbf{b}\perp\mathbf{c}
-\]
+\end{align}
 
 \section{Changing Between Frame}
 If we start with $\mathbf{r},\mathbf{v},\mathbf{a}$, and we moved to another frame and defined as $\mathbf{r}',\mathbf{v}',\mathbf{a}'$. If we have 2 frame of reference $A,B$ with origin at $A,B$, and a mutual object $C$ somewhere else, we can find the following relationship.
-\[
+\begin{align}
 \mathbf{r}_{A,B} + \mathbf{r}_{B,C} = \mathbf{r}_{A,C}
-\]
+\end{align}
 And
-\[
+\begin{align}
 \mathbf{r}_{C,A} = \mathbf{r}_{C,B} - \mathbf{r}_{A,B}
-\]
+\end{align}
 We should get into the hoppy of using a double subscript to track which frame are we talking about and what frame are we in. For example
-\[
+\begin{align}
 \mathbf{r}_{A,B} \colon \text{A relative to B}
-\]
+\end{align}
 Remember that $\mathbf{A} - \mathbf{B}$ essentially gives you a vector pointing from the tip of $B$ to the tip of $A$ when they are connected tail to tail.
 What happens is that you can in fact figure out what $C$ is like in another frame, say, $B$, by subtracting the position vector between $B$ to $A$. We can take derivative of the expression to receive
 \begin{align*}
@@ -201,93 +204,93 @@ Therefore, the answer to this question is \textbf{NO}.
 If you are in a frame that has acceleration \textbf{a} relative to a inertial frame $S$. Note that all inertial frame agree with acceleration since none of them accelerates with respect to each other, else it would not be inertial. In this case, Newton's Second Law can work if you inject \textit{extra fake gravity} into $S$.
 
 We can use the acceleration of $S$ with respect to the inertial frame $S_i$, we define it as $\mathbf{a}_{S,S_i}$. And we use this acceleration to define a fake force or a \textit{fake gravity}, 
-\[
+\begin{align}
 -\mathbf{a}_{S,S_i} = \mathbf{g}_{fake}
-\]
+\end{align}
 and Newton's Second Law works again. 
 
 \section{Moving on a Curve}
 The acceleration on a particle moving on a curve can be characterized by
-\[
+\begin{align}
 \mathbf{a} = \dydx{\abso{\mathbf{v}}}{t}\hat{\parallel} + \frac{v^2}{r_{osc}}\hat{\perp}
-\]
+\end{align}
 where $v$ is the speed, and $\mathbf{v}$ is the velocity vector. And $r_{osc}$ is the radius of the osculating circle.
 
 
 \subsection{Expressing Speed}
 We can express speed as a function of position, and find the acceleration this way. Think of the function of force be written as following. 
-    \[
+    \begin{align}
     F(x_i, \dot{x}_i) = f(x_i) g(\dot{x}_i)
-    \]
+    \end{align}
             Rewrite as
-            \[
+            \begin{align}
             m\dydx{^2x_i}{t^2} = f(x_i) g(\dot{x}_i)
-            \]
+            \end{align}
             Then, write it as
-            \[
+            \begin{align}
             m\dydx{}{t}\dot{x}_i = f(x_i) g(\dot{x}_i)
-            \]
+            \end{align}
             Now we use the chain rule to rewrite the differential operator
-            \[
+            \begin{align}
             m\dydx{}{t}\dot{x}_i  = m\paren{\dydx{}{x_i}\dydx{x_i}{t} }\dot{x}_i= f(x_i) g(\dot{x}_i)
-            \]
+            \end{align}
             And this becomes
-            \[
+            \begin{align}
             m\dot{x}_i\dydx{\dot{x}_i}{x_i} = f(x_i) g(\dot{x}_i)
-            \]
+            \end{align}
             Now this is separable, and it yields
-            \[
+            \begin{align}
             m\dot{x}_i\frac{d\dot{x}_i}{g(\dot{x}_i)} = f(x_i)\,dx_i
-            \]
+            \end{align}
             And we can integrate this on both side. 
 
     This means that we can define an equivalence relationship
-    \[
+    \begin{align}
     a = v\dydx{v}{x}
-    \]
+    \end{align}
     This is what happens when you have speed as a function of position, and cannot explicitly express velocity as a function of time, such as in a spring motion, where
-    \[
+    \begin{align}
     \frac{1}{2}mv^2 - \frac{1}{2}kx^2 = 0
-    \]
+    \end{align}
     Yes, you can obtain the expression of velocity, but that is after solving the ODE. This is not always feasible, so we can use the above property to express acceleration directly using the speed as a function of position. 
 
 \subsection{Exponential Function}
     In physics, a function such as $y = e^{x}$ is not nicely defined since raising e to $5$ meters power is not. Therefore we need to add some coefficient to make the dimensions right, for example.
-    \[
+    \begin{align}
     y(t) = Ce^{kt}
-    \]
+    \end{align}
     Where $C$ has unit of $L$ length, and $k$ has unit of $\frac{1}{L}$ length.
     \subsubsection{Example 1}
     If a particle traces this path, and remains at a constant speed $v_0$, how do we figure out its acceleration? Since we have no information on their relationship with respect to time, we can differentiate it implicitly
-    \[
+    \begin{align}
     \dot{y} = \dydx{y}{t} = \dydx{y}{x}\dydx{x}{t} = Cke^{kx}\dot{x}
-    \]
+    \end{align}
     We can this again, and differentiate
-    \[
+    \begin{align}
     \ddot{y} = \dydx{\dot{y}}{t} = \dydx{\dot{y}}{x}\dydx{x}{t} = Ck^2e^{kx}\dot{x} + Cke^{kx}\ddot{x} = Cke^{kx}\paren{k\dot{x}^2+\ddot{x}}
-    \]
+    \end{align}
     We also know that $\mathbf{a}\perp\mathbf{v}$. Therefore we can use the fact 
-    \[
+    \begin{align}
     \dot{x}\ddot{x}+\dot{y}\ddot{y} = 0
-    \]
+    \end{align}
     This is the last piece of the puzzle for us to figure out the acceleration. 
     \subsubsection{Example 2}
     If the particle is released from $kx=1$ and this trajectory is frictionless where the particle has to move along it, what is its acceleration and velocity at $x=0$? In this case, we can exploit the fact that
-    \[
+    \begin{align}
     K(t) + V(t) = \textit{Constant}
-    \]
+    \end{align}
     We can in fact implicitly differentiate this constraint to obtain
-    \[
+    \begin{align}
     \dydx{}{t}\paren{ \frac{1}{2}v^2(t) + gy(t)} = 0
-    \]
+    \end{align}
     Consequently, this gives us
-    \[
+    \begin{align}
     v\dot{v} + gv_y = 0
-    \]
+    \end{align}
     This eventually gives you
-    \[
+    \begin{align}
     \dydx{v}{t} = \frac{-g v_y}{v}
-    \]
+    \end{align}
     And we can work from here.
 
 
@@ -295,20 +298,20 @@ We can express speed as a function of position, and find the acceleration this w
 
 \section{Newton's Second Law}
     When we are really using this law, we are actually working with a vector ODE
-    \[
+    \begin{align}
     \mathbf{F}_{net} = m\ddot{\mathbf{r}}
-    \]
+    \end{align}
     There are a few scenarios where we can work on it. First of which it becomes an algebraic equation with some elementary problems.
 
     Another scenario is where we would obtain some ODE from it, such as in harmonic oscillators. 
-        \[
+        \begin{align}
         -k\mathbf{x} = m\ddot{\mathbf{x}}
-        \]
+        \end{align}
 
     A third scenario, we would have drag and air resistance, something like
-    \[
+    \begin{align}
     \mathbf{F} = \mathbf{F}(\mathbf{v})
-    \]
+    \end{align}
     This becomes a first order ODE with components of $\mathbf{v}(t)$ to obtain $\mathbf{r}(t)$.
 
     We would never go beyond second order. But we might have a mix of them where we have a system of ODE. This is what the Newton's Second Law is the most powerful. 
@@ -317,127 +320,127 @@ We can express speed as a function of position, and find the acceleration this w
 
 \ubsection{Motion in B Field}
     For details, check chapter $2$ of Taylor. Say you have a particle in a uniform \textbf{B} field in the $\unz$ direction. 
-    \[
+    \begin{align}
     \mathbf{B} = B_0 = \unz
-    \]
+    \end{align}
 
     You have a particle with velocity 
-    \[
+    \begin{align}
     \mathbf{v}_0  = v_{x0}\unx +v_{y0}\uny + v_{z0}\unz 
-\] 
+\end{align} 
 at time $t=0$. We want to find $x(t),y(t),z(t)$. We know that the force can be written as
-\[
+\begin{align}
 \mathbf{F} = m\ddot{\mathbf{r}} = q\mathbf{v}\times \mathbf{B}
-\]
+\end{align}
 do cross products as cyclic permutations and not the determinant, its faster. And we have obtained that the force the particle experiences in the field is
-\[
+\begin{align}
 \begin{cases}
     m\ddot{x} = qv_yB_0\\
     m\ddot{y} = qv_xB_0\\
     m\ddot{z} = 0
 \end{cases}
-\]
+\end{align}
 We have obtained the ODE
-\[
+\begin{align}
 \dot{v}_x = \frac{qB_0}{m}v_y \quad \dot{v}_y = -\frac{qB_0}{m} v_x
-\]
+\end{align}
 We will give the coefficient a name $\omega = \frac{qB_0}{m}$, since it should have a unit of $s^{-1}$. We will solve this with a tricky method. We differentiate the first equation and obtain
-\[
+\begin{align}
 \ddot{v}_x = \omega\dot{v}_y = -\omega^2v_x
-\]
+\end{align}
 And we know what $\dot{v}_y$ is, we can simplify it. Do the same for the other ODE
-\[
+\begin{align}
 \ddot{v}_y = -\omega v_x = -\omega^2v_y
-\]
+\end{align}
 This is obviously a harmonic oscillator equation and its solution is well-known. 
-\[
+\begin{align}
 \begin{cases}
     v_x = A\sin\omega t + B\sin\omega t\\
     v_y = C\sin\omega t + D\sin\omega t
 \end{cases}
-\]
+\end{align}
 Now we throw our initial condition in, that is the speed at $t=0$. Since it was second order, we will differentiate the solution and throw in $t=0$ and compare it with out acceleration. Then we will figure out what the coefficients are. 
 
 \subsection{Drag}
 Now we would like to include drag in our system to make it extra fun. Say we have a drag
-\[
+\begin{align}
 \mathbf{F}_d = -b\mathbf{v}
-\]
+\end{align}
 Where $b$ has the dimension $kg/s$. 
 
 Here, think of this scenario. A mass moving in $\unx$ with some speed $v_0$. And we have a linear drag, the air resistance $-\unx$. Intuitively, the block will keep slowing down at a rate proportional to its speed. And when it stops, there are no more drag and this will take indefinite amount of time. We can write down the following info
-\[
+\begin{align}
 \mathbf{F}_{net} = m\dot{\mathbf{v}} = -b\mathbf{v}
-\]
+\end{align}
 Therefore
-\[
+\begin{align}
 \dot{\mathbf{v}} = -\frac{b}{m}\mathbf{v} = -\frac{1}{\tau}\mathbf{v}
-\]
+\end{align}
 Where $\frac{1}{\tau} = \frac{b}{m}$, because it has the dimension $s^{-1}$. And now we pick a frame, where we already sort of defined previously. 
 
 Be very mindful that when we start to write ODEs, we are only working with scalar. Here we can start writing down euqatoins
-\[
+\begin{align}
 \dot{v}_x = -\frac{1}{\tau}v_x
-\]
+\end{align}
 This is obviously $v_x = Ce^{-\frac{t}{\tau}}$, where $C$ is $v_0$. This can be extrapolated from the initial condition. Now, to obtain the position, simply integrate it
-\[
+\begin{align}
 x = -v_0\tau e^{-\frac{t}{\tau}} + C
-\]
+\end{align}
 If we throw in $t=0$, we know $x=0$. And this tells us that $C = v_0\tau$. How do we interpret this result?
-\[
+\begin{align}
 x(t) = v_0\tau\paren{1 - e^{-\frac{t}{\tau}}}
-\]
+\end{align}
 Basically this represents how far this object would have gone in time $\tau$ if not the resistance of air. 
 
 The reason why we know $\frac{1}{\tau}$ goes into the coefficient is because the exponents need to be dimensionless. This coefficient has to cancel the unit of time on the exponent. This is why we have $\frac{t}{\tau}$
 
 And if we think about what the trajectory of one dimensional motion with drag is like, we can figure out that it is
-\[
+\begin{align}
 \mathbf{v}(t) = \mathbf{v}_0 e^{-\frac{t}{\tau}} + \mathbf{v}_{ter}\paren{1-e^{-\frac{t}{\tau}}}
-\]
+\end{align}
 
 Think of it as the initial velocity would die out exponentially and the velocity will slowly be stabilized at $\mathbf{v}_{ter}$. If we want something to have big impact at start but die-out quickly, we just slap an exponential function in front of it. Try to throw in different value for initial velocity and think about the behavior of the velocity. 
 If the initial velocity is $0$, we have the free falling with drag expression.
 If the initial velocity is opposite to the direction of the gravity, the gravity and the drag will point into the same direction and die out quickly and exponentially, the velocity will still approach terminal velocity. So think of it like an exponential function that starts below the $t$ axis at $t=0$. It will cross $v=0$ quickly, and \textit{accelerate} to terminal velocity.
 
 And if were to integrate this and try to find the constant of integration, we have
-\[
+\begin{align}
 \mathbf{y}(t) = \mathbf{v}_{ter}t + \paren{1-e^{-\frac{t}{\tau}}\paren{\mathbf{v}_{0}-\mathbf{v}_{ter}}}\tau + \mathbf{y}_0
-\]
+\end{align}
 Since we did everything with a vector, now we can just integrate that extra fake gravity and realize that
-\[
+\begin{align}
 \mathbf{v}_{ter} = \mathbf{g}_{ef}\tau
-\]
+\end{align}
 Figure out the combined, or effective gravity. Now we can use the same \textit{drag} formula. 
 
 \subsection{More Drag}
 Now we add friction. We recognize that the frictional force, defined by
-\[
+\begin{align}
 F_k = \mu_k = mg\mu_k
-\]
+\end{align}
 We see that this is exactly like tossing stuff straight up. So this is just what we have done before.
-\[
+\begin{align}
 \mathbf{v}(t) = \mathbf{v}_0e^{-\frac{t}{\tau}} + \mu_k\tau\paren{1-e^{-\frac{t}{\tau}}}
-\]
+\end{align}
 
 \textbf{Important Note:} An important takeaway is to think of a problem and compare it to something we have learned instead of solving everything from scratch. 
 
 \subsection{Tossing With Drag}
 Now we toss a ball in the air with angle $\theta$. WIth gravity as well. The $\unx$ component is the same as before, and the $\uny$ component is the toss up and down situation. We can obtain the system as
-\[
+\begin{align}
 m\dot{\mathbf{v}} = m\mathbf{g} - b\mathbf{v}
-\]
+\end{align}
 If we break it up into components, we have
-\[
+\begin{align}
 \begin{cases}
     x\colon = -\frac{1}{\tau}v_x = \dot{v}_x\\
     y\colon -g-\frac{1}{\tau}v_y = \dot{v}_y
 \end{cases}
-\]
+\end{align}
 And if the drag is not linear, say
-\[
+\begin{align}
 \mathbf{F}_d = -c\abso{\mathbf{v}}\mathbf{v}
-\]
+\end{align}
 Read \textit{Taylor} and \textit{Marion \& Thornton}. We can still extract some information out of a non-linear coupled ODE. If one would like to investigate and do a project on it, it would be a fun one. 
 
 \section{Energy}
@@ -450,35 +453,35 @@ For example, $U_g = mgh$ is an oversimplification that we use, because the energ
 We need to know what sort of force we call is conservative forces
 \begin{enumerate}
     \item It is a force that depends on where the particle is
-    \[
+    \begin{align}
     \mathbf{F} = \mathbf{F}(\mathbf{r})
-    \]
+    \end{align}
     
     \item Work done on a particle as you go from $A$ to $B$ is independent of the path it takes. 
-    \[
+    \begin{align}
     W = \int_C \mathbf{F}\cdot \text{d}\mathbf{r}
-    \]
+    \end{align}
     Here, as long as $C$ goes from $A$ to $B$, the work is constant. 
     
     \item The curl of a conservative vector field is $0$.
-    \[
+    \begin{align}
     \curl \mathbf{F} = 0
-    \]
+    \end{align}
     And we can also write the vector field as the gradient of some scalar function
-    \[
+    \begin{align}
     \mathbf{F}(\mathbf{r}) = -\boldsymbol{\nabla}U(\mathbf{r})
-    \]
+    \end{align}
 \end{enumerate}
 
 \subsection{One Dimensional Motion}
 Ideally, we want to treat things as one dimensional motion. Because if we only consider one dimensional motion
-\[
+\begin{align}
 \curl \mathbf{F} = 0
-\]
+\end{align}
 This is always true because there is no $y$ and $z$ direction of motion. In this case, 
-\[
+\begin{align}
 F(x) = -\dydx{U}{x}
-\]
+\end{align}
 \subsection{First Technique}
 The main take-away, or technique is that How to read a potential energy diagram.
 
@@ -500,50 +503,50 @@ And if you are in a valley, your motion will be like a Harmonic Oscillator.
 So if we treat stuff like one dimensional object, and plot the potential graph, small disturbances in the potential is best modeled as the harmonic oscillator. 
 
 The way we do it is use the best fit parabola found by Taylor Series expansion. Let $u(x)$ be our function of potential with respect to position, and $x_0$ be the place of interest.
-\[
+\begin{align}
 u(x) = u(x_0) + u'(x)(x-x_0) + \frac{1}{2}u''(x)(x-x_0)^2 + \ldots
-\]
+\end{align}
 If we are in a valley, the first derivative is effectively gone, leaving us with the second order term, and we ignore all higher orders. Now we have a parabolic approximation that models a harmonic oscillator.
 
 So how do we find the period of such motion? we can do that with the following procedure.
-\[
+\begin{align}
 E_{tot} = \frac{1}{2}mv^2(x) + u(x)
-\]
+\end{align}
 Now we want to rewrite everything
-\[
+\begin{align}
 \frac{2}{m}\sqbkt{E_t - u(x)} = v^2(x) = \paren{\dydx{x}{t}}^2
-\]
+\end{align}
 We can obtain the following
-\[
+\begin{align}
 dt = \sqrt{\frac{m}{2}}\frac{dx}{\sqrt{E_t - u(x)}}
-\]
+\end{align}
 Now we can integrate
-\[
+\begin{align}
 \int_0^{\frac{T}{2}} \,\text{d}t = \int_{x_{min}}^{x_{max}}  \sqrt{\frac{m}{2}}\frac{\text{d}x}{\sqrt{E_t - u(x)}}
-\]
+\end{align}
 This is effectively
-\[
+\begin{align}
 T = \sqrt{2m}\int_{x_{min}}^{x_{max}} \frac{\text{d}x}{\sqrt{E_t - u(x)}}
-\]
+\end{align}
 We can see that if we are trying to integrate from one hill to another hill with the same energy, the integral diverges and this implies that it takes an indefinite amount of time to reach the other endpoint. 
 
 \subsection{Questions That Can Be 1D}
 We can actually use this trick to work with a pendulum, Since its path is fixed on a curve, and it is technically a one dimensional path. We need to track where it is on the curve, we use
-\[
+\begin{align}
 l\theta = s
-\]
+\end{align}
 Where $l$ is the length of the pendulum, and $s$ is the arc length. We set the lowest point of the pendulum to be the point where potential is $0$. We know that
-\[
+\begin{align}
 U(\theta) = mgh = mgl(1-\cos\theta)
-\]
+\end{align}
 We also know that the kinetic energy is
-\[
+\begin{align}
 K(\theta) = \frac{1}{2}mv^2 = \frac{1}{2}ml^2\dot{\theta}^2
-\]
+\end{align}
 We obtained this by the below relationship
-\[
+\begin{align}
 v = \dydx{s}{t} = l\dydx{\theta}{t}
-\]
+\end{align}
 If we are to graph the function of the potential onto a graph, we have
 \begin{figure}[!h]
     \centering
@@ -554,49 +557,49 @@ If we are to graph the function of the potential onto a graph, we have
 WE can see that as long as we have periodic motion for a very big region confined in $-\pi$ to $\pi$.
 
 As long as we can write a system as something that looks like
-\[
+\begin{align}
 \begin{cases}
     K = \frac{1}{2}\paren{m_{eff}}\dot{\mathbf{r}}^2\\
     U \approx U_{eq} = \frac{1}{2}\paren{\quad}\dot{\mathbf{r}}^2
 \end{cases}
-\]
+\end{align}
 We also define $U'' = k_{eff}$, the effective kinetic energy is the second derivative of the potential. And whatever is in the kinetic energy between the one half and the velocity, it is our effective mass. We can find the angular frequency
-\[
+\begin{align}
 \omega^2 = \frac{K_{eff}}{m_{eff}}
-\]
+\end{align}
 
 We can exploit this relationship. Now lets do some practices. 
 
 Think of a cube on a cylinder rocking back and forth, we can write its height as
-\[
+\begin{align}
 y = (r+b)\cos\theta + r\theta\sin\theta
-\]
+\end{align}
 And horizontal movement as
-\[
+\begin{align}
 x = (r+b)\sin\theta-r\theta\cos\theta
-\]
+\end{align}
 Now we can obtain the expression for potential energy
-\[
+\begin{align}
 u(\theta) = mgy = mg\sqbkt{(r+b)\cos\theta + r\theta\sin\theta}
-\]
+\end{align}
 and now we can take derivativees of the poential energy to learn about it
-\[
+\begin{align}
 u' = mg\sqbkt{-b\sin\theta + r\theta\cos\theta}
-\]
+\end{align}
 We see that the thing has equilibrium at
-\[
+\begin{align}
 \tan\theta = \frac{r}{b}\theta
-\]
+\end{align}
 This means that when the radius $r$ is bigger than the length of the block $b$, we can obtain 3 points where the block can stay stationary.
 
 We can examine the second derivative
-\[
+\begin{align}
 u'' = mg\sqbkt{-b\cos\theta - r\theta\sin\theta+r\sin\theta}
-\]
+\end{align}
 We can see the equilibrium is
-\[
+\begin{align}
 u''(0) = mg\paren{r-b}
-\]
+\end{align}
 We can see that the equilibrium is stable if $r>b$, not stable if $b>r$. Now we have plenty of information about the block. 
 
 We see how much we have learned by simply looking at the equation of the potential energy of a cube on a cylinder. 
@@ -604,64 +607,64 @@ We see how much we have learned by simply looking at the equation of the potenti
 And now how do we know its kinetic energy, what is its equation. 
 
 We have to know what is kinetic energy of the system and how do we define it. The claim is, it can be written as
-\[
+\begin{align}
 K_t = K_c + K_a
-\]
+\end{align}
 Where $K_t$ is the total kinetic energy of the system. $K_c$ is the kinetic energy of the center of mass. $K_a$ is the kinetic energy of everyone in the frame of the center of mass. 
 
 This is basically what we do in Lagrangian mechanics. We want to express energy with as little coordinates as possible, try to make your calculation and life easier. 
 
 In general, you will always get something that looks like
-\[
+\begin{align}
 K = \frac{1}{2}\paren{m_{eff}}\dot{\theta}^2 + \paren{\quad} \dot{\theta}^2
-\]
-\[
+\end{align}
+\begin{align}
 P = \frac{1}{2}\paren{k_{eff}}\theta^2
-\]
+\end{align}
 And the angular frequency is
-\[
+\begin{align}
 \omega^2 = \frac{k_{eff}}{m_{eff}}
-\]
+\end{align}
 \subsection{System}
 We first need to know how to analyze the center of mass. We define it to be 
-\[
+\begin{align}
 M_{tot}\mathbf{r}_{com} = \sum m_i\mathbf{r}_i
-\]
+\end{align}
 We define it this way such that if we differentiate it with respect to time, we have
-\[
+\begin{align}
 \dydx{}{t}\paren{M_{com}\mathbf{r}_{tot} = \sum m_i\mathbf{r}_i}
-\]
+\end{align}
 This gives us
-\[
+\begin{align}
 M_{tot}\mathbf{v}_{com} = \sum m_i \mathbf{v}_i
-\]
+\end{align}
 Do this process again, we would obtain
-\[
+\begin{align}
 M_{tot}\mathbf{a}_{com} = \sum m_i \mathbf{a}_i
-\]
+\end{align}
 If we examine the term $m_i\mathbf{a}_i$, we find that this is the net force on the $i$-th particle. We know that this net force is as follows
-\[
+\begin{align}
 \mathbf{F_i} = \mathbf{F}_{net,i} + \mathbf{F}_{i,j}
-\]
+\end{align}
 Where $j$ is some other particle in the same system. This means that if we sum it up and obtain something for the entire system, we realize that all these internal forces cancels. Therefore we only care about the external forces. 
 
 Recall the the \textbf{Work Energy Principle} suggests that
-\[
+\begin{align}
 \sum W = \Delta E
-\]
+\end{align}
 We only care about the changes in total energy of all particles, and we call that work. 
 
 Therefore 2 different approaches. 
 \begin{enumerate}
     \item We can only consider work done on the center of mass, and understands that it is equivalent to the change of energy of the center of mass, which is the change of potential and kinetic energy of the center of mass. This is the single particle version of the center of mass.
     \item The alternative is legitimately doing the work on individual particles to figure out the total changes. This means that we want to track the change of energy externally and internally, and it should be equivalent to the work done on individual particle. 
-    \[
+    \begin{align}
     W_{i} = W_{ext,i} + \sum_{j\neq i} W_{i,j}
-    \]
+    \end{align}
     In this case, we have to consider the internal energy. Now we have to consider this exact situation for every single particle
-    \[
+    \begin{align}
     W(\text{work on all particle}) = W(\text{external force on all particle}) + W(\text{all internal work})
-    \]
+    \end{align}
     Every time a system changes its configuration or shape, the second term is usually non-zero. This is why we want to introduce the term \textbf{rigid body}. 
 
     A \textbf{rigid body} is where the internal particles are not moving with respect to each other. There are no internal work.
@@ -673,16 +676,296 @@ A very important thing to know is that you have to use the work energy theorem t
 
 
 
+\subsection{Recap}
+The work done should be expressed as
+\begin{align}
+\sum_i W^i_{\text{by n.c}} = \sum_i W^i_{ext} + \sum_i W^i_{int}
+\end{align}
+Here, $n.c.$ is \textbf{non-conservative} forces. 
+
+And the work done by conservative forces can be modeled with potential.
+\begin{align}
+U_{tot,sys} = U_{ext} + U_{int}
+\end{align}
+For a rigid body, we ignore the internal work done. 
+
+\section{Rotation}
+
+Before talking about torque, we always need to define where is the center of rotation. We have to include the pivot of rotation for torque, and we have to denote it explicitly cuz torque is different depending on the pivot you would choose.
+
+After understanding this, the torque can then be calculated with
+\begin{align}
+\boldsymbol\tau_{F,p} = \mathbf{r}\times \mathbf{F}
+\end{align}
+Where $\boldsymbol\tau_{F,p} $ is the torque generated by $\mathbf{F}$ around pivot $p$. 
+
+Angular momentum also needs to be defined around a pivot. You would obtain different value of angular momentum based on pivot chosen, just like torque. In short, everything about rotation requires an explicitly defined pivot.
+
+For a circular motion about a center $c$, with radius $s$, with tangential speed $v$, the angular momentum is
+\begin{align}
+\mathbf{L}_c = mvs\hat{\mathbf{l}}
+\end{align}
+Here, $\hat{\mathbf{l}}$ indicates the direction of angular momentum. In a single particle case, we can find the torque similar to the newton's second law with
+\begin{align}
+\boldsymbol{\tau}_{tot,p} = \dydx{\mathbf{L}_p}{t}
+\end{align}
+For a multi-particle system, it would be
+\begin{align}
+\boldsymbol{\tau}_{tot,ext,p} = \dydx{\mathbf{L}_{tot,p}}{t}
+\end{align}
+Where
+\begin{align}
+\mathbf{L}_{tot,p} = \sum_i \mathbf{L}^i_p
+\end{align}
+Or, it can be expressed as
+\begin{align}
+\mathbf{L}_{tot,p} = \mathbf{L}_{com,p} + \mathbf{L}_{a,com}
+\end{align}
+Where $\mathbf{L}_{a,com}$, the angular momentum of all particle spinning around the center of mass needs to be evaluated and it takes a sum or an integral. 
+
+For a disk spinning on the $xy$-plane, towards the positive $x$ axis, we can write its angular momentum as
+\begin{align}
+\mathbf{L}_{tot,p} = mv_0R\boldsymbol{\otimes} + I\omega\boldsymbol{\otimes}
+\end{align}
+Here,$\boldsymbol{\otimes}$ means pointing in $-\unz$ direction, and $\boldsymbol{\odot}$ means pointing in $+\unz$ direction.
+
+There is a very special property about angular momentum, is that the following relationship
+\begin{align}
+\boldsymbol\tau_{net,ext,com} = \dydx{\mathbf{L}_{tot,com}}{t}
+\end{align}
+is true even if the center of mass ($com$) is accelerating, or the frame we are working with is \textbf{non-inertial}. This is a very special property of the rotational newton's second law. 
+
+\subsubsection{F.Y.I.}
+If there is a co-linear, opposite, force couple with the same magnitude, they cannot produce a torque around any pivot. 
+
+\section{Collisions}\
+We will leverage the strength of the frame of reference of the center of mass. Before and after collision, if we situtate ourselves in the frame for center of mass, every particle has the same speed before and after collision.
+
+\subsubsection{Example}
+Read chapter 9 in MT5.
+
+If we have two particle collides, one with mass $m_1$ and the other with $m_2$, with a speed $v_0$ on $m_1$. How do we figure out what angle they ended up going? $m_2$ is initially at rest. 
+
+Say that $m_1$ bounces off with $\phi$, and $m_2$ were hit and started moving at angle $\psi$.
+
+We first shift to the center of mass frame where we will find center of mass moving at
+\[
+v_{cm} = \frac{m_1 v_0}{m_1 + m_2}
+\]
+
+
+We arrive at a very strong result
+\[
+\tan \phi = \frac{\sin\theta}{\cos\theta + \frac{m_1}{m_2}}
+\]
+And once we obtained $\theta$, we know that
+\[
+\psi = \frac{\pi - \theta}{2}
+\]
 
 
 
+\section{Varying Mass Problems}
+Now we will consider varying masses.
+
+\subsection{Constant velocity}
+
+Think of this example problem, you have a space shuttle traveling through a bunch of dusts in the space, the dusts are coming in at some speed $u$ and sticks to the shuttle after contacting. 
+
+The question is what force is needed to be applied on the rocket such that the rocket maintain the same velocity. We want to know what the vector is exactly as a function of time. 
+
+The trick here is define our system such that we only consider the system over a small interval of time $\text{t}$, and consider the dust that will hit the spaceship after $\text{d}t$ amount of time as part of the system. This means that at time $t$, our total momentum of the system is
+\[
+\mathbf{p}(t) = M(t)\mathbf{v}(t) + \mathbf{u}\text{d}m
+\]
+And at time $t+\text{d}t$, we have
+\[
+\mathbf{p}(t+\text{d}t) = M(t+\text{d}t)\mathbf{v}(t+\text{d}t)
+\]
+And we can simplify, and get
+\[
+\mathbf{p}(t+\text{d}t) = M(t)\mathbf{v}(t+\text{d}t) + \mathbf{v}(t+\text{d}t)\text{d}m
+\]
+And we want the velocity to stay constant, or, $\mathbf{v}(t+\text{d}t) = v_0$ ,therefore we have
+\[
+\text{d}\mathbf{p} = \mathbf{p}(t+\text{d}t) - \mathbf{p}(t) = \paren{\mathbf{v}_0 - \mathbf{u}}\text{d}m 
+\]
+And the force is given by
+\[
+\mathbf{F}_{ext} = \dydx{\mathbf{p}}{t}=\paren{\mathbf{v}_0 - \mathbf{u}}\dydx{m}{t}
+\]
+This is what happens if we want the velocity to stay constant.
+
+\subsection{Rocket Propellant}
+How do we model a rocket that is throwing away stuff and accelerating, what quantity do we track. 
+
+We want to track the velocity of the propellant with respect to the rocket. We will denote that as $\mathbf{u}$. Then, in a lab frame, what we know about the velocity of the propellant is
+\[
+\mathbf{u}_s = \mathbf{u}+\mathbf{v}+\text{d}\mathbf{v}
+\]
+Since the $\mathbf{u}$ is the velocity of the propellant in the frame as seen from the rocket. And the rocket should have gained some velocity, and as seen in the lab frame, the velocity of the propellant is just the sum of these vectors. 
+
+Before the propellant is ejected, we have
+\[
+\mathbf{p}(t) = \paren{M+\text{d}m}\mathbf{v}(t)
+\]
+After the ejection, we have
+\[
+\mathbf{p}(t+\text{d}t) = \text{d}m\paren{\mathbf{u}+\mathbf{v}+\text{d}\mathbf{v}} + M\paren{\mathbf{v+\text{d}\mathbf{v}}}
+\]
+Now we can do some expansion, and actually $\text{d}m\text{d}\mathbf{v}$ goes away. We can ignore that term. Now, we have
+\[
+\mathbf{p}(t+\text{d}t) = \mathbf{u} +\mathbf{v}\text{d}m + M\mathbf{v}+M\text{d}\mathbf{v}
+\]
+Now we want to find the $\Delta \mathbf{p}$
+\[
+\Delta \mathbf{p} = \mathbf{p}(t+\text{d}t)  - \mathbf{p}(t) = \mathbf{u}\text{d}m + M\text{d}\mathbf{v}
+\]
+Now we can define the external force, as the rate of change of the momentum of the system
+\[
+\mathbf{F}_{ext} = \mathbf{u}\frac{\text{d}m}{\text{d}t} + M\frac{ \text{d}\mathbf{v}}{\text{d}t}
+\]
+We realize that
+\[
+\dydx{m}{t} = - \dydx{M}{t}
+\]
+Because the change of mass of the propellant should be the same as the rate at which the rocket is losing mass. 
+
+So what we actually have is
+\[
+\mathbf{F}_{net, ext} = -\mathbf{u}\frac{\text{d}M}{\text{d}t} + M\frac{ \text{d}\mathbf{v}}{\text{d}t}
+\]
+Or an easier way to express is
+\[
+\mathbf{F}_{net,ext} = -\mathbf{u}\dot{M} + M\dot{\mathbf{v}}
+\]
+Since we are in one system, there should not be an \textit{external force}, so we have
+\[
+-\dot{M}\mathbf{u} +  M\dot{\mathbf{v}} = 0
+\]
+Now, what about we have gravity, the external force is just gravity.
+\[
+-\dot{M}\mathbf{u} +  M\dot{\mathbf{v}} = M\mathbf{g}
+\]
+A good practice is to set the equality as
+\[
+\text{d}\mathbf{p} = \mathbf{F}_{ext}\cdot \text{d}t
+\]
+Therefore it delas with the remaining second degree differentials that we generally not interested in. 
+
+\subsection{Rope Falling Problem}
+If there is a pile of rope, there is a hole and the rope is falling through it. How do we middle the velocity of the falling rope?
+
+We should be able to obtain the differential equation
+\[
+\dot{y}^2 + y\ddot{y} = yg
+\]
+Since we are looking for a function $y(t)$, the length of the rope hanging off as a function of time. 
+
+We can inspect the dimension of the ODE, and realize that we need a function of $y(t) = \sqbkt{\text{m}}$, this means that the only thing can make sense to be the solution of this ODE is that
+\[
+y(t) = Agt^2
+\]
+Since this is the only combination that makes the correct dimension for our problem. Now we can shove this back into the ODE to get
+\[
+4A + 2A = 1
+\]
+This gives us the solution of the ODE
+\[
+y(t) = \frac{1}{6}gt^2 + y_0
+\]
+Where $y_0$ is our initial condition. 
 
 
+\section{Rotating Reference Frame}
 
+Imagine you have a vector $\boldsymbol\omega$ in a frame $S$, where another frame $S'$ that is rotating about the vector $\boldsymbol{\omega}$. There is a vector $\mathbf{b}$ in $S'$ that is stationary as seen in $S'$. We would like to know how $\mathbf{b}$ is changing as seen in $S$, or in other word, what is $\text{d}\mathbf{b}$ and $\text{d}b$?
 
+We can draw a line from $\boldsymbol\omega$ to $\mathbf{b}$, call it $\mathbf{a}$ and let the angle between them be $\theta$. We now know that
+\[
+\text{d}b = B\sin\theta\cdot \omega \text{d}t
+\]
+In other word
+\[
+\dydx{B}{t} = B\omega\sin\theta
+\]
+And we arrived at an expression for the change of $\mathbf{B}$ that is true in any frame.
+\[
+\dydx{\mathbf{B}}{t} = \boldsymbol{\omega}(t)\times \mathbf{b}(t)
+\]
 
+The important realization is that $\omega$ is actually the vector of angular velocity, that is why this notation is used. The magnitude $\omega$ tells you how fast stuff are spinning. So the angle that the vector sweep over time $\text{d}t$ is $\omega\text{d}t$.
 
+But if we want to express an arbitrary vector $\mathbf{B}$, rotating about $\boldsymbol{\omega}$, and express it in both an arbitrary rotating frame $S'$, and a fixed frame $S$. The expression should involve taking the time derivative of the expression of the vector.
 
+For the rotating frame $S$, the expression should be
+\[
+\dydx{\mathbf{B}_{S}}{t} = \boldsymbol{\omega} \times \mathbf{B}
+\]
+And as viewed in rotating frame $S'$ is
+\[
+\dydx{\mathbf{B}_S}{t} = \boldsymbol{\omega}\times \mathbf{B} + \dydx{\mathbf{B}_{S'}}{t}
+\]
+They are different vectors but the same vectors at the same time due to the additional rotation $S'$ is doing. 
+
+And as a clarification, $\boldsymbol{\omega}$ is in the perspective of the $S$ frame. 
+
+We can interpret the derivative operator between $S$ and $S'$ with the following relationship
+\[
+\paren{\dydx{}{t}}_S = \paren{\dydx{}{t}}_{S'} + \boldsymbol{\omega} \times \sqbkt{\quad}
+\]
+The empty part is the adjustment, and it depends on what vector are we dealing with.
+
+We also have to think about the difference in the time derivative of the angular frequency
+\[
+\paren{\dydx{\boldsymbol{\omega}}{t}}_S = \paren{\dydx{\boldsymbol{\omega}}{t}}_{S'}
+\]
+Since $\boldsymbol{\omega} \times \boldsymbol{\omega} = 0$, we realize that this is the only thing that everybody would agree on regardless of their frame of reference. 
+
+\subsection{Point moving around}
+Think of the position vector of a particle in both $S$, the lab frame, and $S'$, the rotating frame. We say that they have the same origin, and this means
+\[
+\mathbf{r}(t) = \mathbf{r}'(t)
+\]
+Now we want to know how the velocity compares in both frames. With the formula we derived earlier, we have
+\[
+\paren{\dydx{\mathbf{r}}{t}}_S = \paren{\paren{\dydx{\mathbf{r}}{t}}}_{S'} +\boldsymbol{\omega}+\mathbf{r}
+\]
+Then, the LHS is the velocity as viewed in the lab frame, we have this lovely conversion
+\[
+\mathbf{v}(t) = \mathbf{v}' + \boldsymbol{\omega }+ \mathbf{r}
+\]
+Now we differentiate this again. This is a particularly intricate process because we will actually use the linear property of differentiation operator to break it into 3 different derivatives, and apply our formula three times (There is product rule too).
+
+\begin{align}
+\paren{\dydx{}{t}}_S&\biggl( \mathbf{v}(t) = \mathbf{v}' + \boldsymbol{\omega }+ \mathbf{r} \biggr)\\
+\mathbf{a} & = \paren{\dydx{}{t}}_S\mathbf{v}' + \paren{\dydx{}{t}}_S\paren{\boldsymbol\omega \times \mathbf{r}'}\\
+\mathbf{a} &= \paren{\dydx{\mathbf{v}'}{t}}_S + \paren{\dydx{\boldsymbol{\omega}}{t}}_S \times \mathbf{r}' + \boldsymbol{\omega}\times\paren{\dydx{\mathbf{r}'}{t}}_S
+\end{align}
+We want to use our formula to carry out each of these term delicately, we will get
+\[
+\mathbf{a}(t) = \mathbf{a}' + \boldsymbol{\omega}\times\paren{\boldsymbol{\omega}\times \mathbf{r}'} + 2\paren{\boldsymbol{\omega}\times \mathbf{v}'} + \boldsymbol{\alpha} \times \mathbf{r}'
+\]
+If we slap a mass $m$ onto it, we will get the force in these two reference frames. We shall analyze it carefully
+
+\begin{enumerate}
+    \item The \textbf{Centrifugal Force}, or \textbf{Radial Anti-gravity}, would be
+    \[
+    \mathbf{F}_{r.a.g.} = m\sqbkt{\boldsymbol{\omega}\times\paren{\boldsymbol{\omega}\times \mathbf{r}'}}
+    \]
+    And it has magnitude
+    \[
+    F_{r.a.g.} =m \omega^2r'\sin\theta
+    \]
+    Where $\theta$ is the angle between $\boldsymbol\omega$ and $\mathbf{r}'$
+
+    \item The \textbf{Coriolis Force}, or the \textbf{Gravito-electromagnetism}, that is the second term 
+
+    \item The third term is the \textbf{Euler's force}, usually experienced when there is angular acceleration.
+    \[
+    \mathbf{F}_{Euler} = m\paren{\mathbf{r}' \times \boldsymbol{\alpha}}
+    \]
+\end{enumerate}
 
 
 

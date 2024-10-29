@@ -1,0 +1,929 @@
+\documentclass[12pt]{article}
+\pagestyle{empty}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{latexsym, epsfig, ulem, cancel, multicol, hyperref}
+\usepackage{graphicx, tikz, subfigure,pgfplots}
+\usepackage[margin=1in]{geometry}
+\setlength{\parindent}{0pt}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\setlength{\parskip}{1ex}
+
+\newcommand{\T}[0]{\top}
+\newcommand{\F}[0]{\bot}
+\newcommand{\liminfty}[1]{\lim_{#1 \to \infty}}
+\newcommand{\limzero}[1]{\lim_{#1 \to 0}}
+\newcommand{\limto}[1]{\lim_{#1}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\odd}[0]{\mathbb{Z} - 2\mathbb{Z}}
+\newcommand{\lineint}[1]{\int_{#1}}
+\newcommand{\pypx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\divg}{\nabla \cdot}
+\newcommand{\curl}{\nabla \times}
+\newcommand{\dydx}[2]{\frac{\text{d} #1}{\text{d} #2}}
+\newcommand{\sqbkt}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\tribkt}[1]{\left< #1 \right>}
+\newcommand{\abso}[1]{\left|#1 \right|}
+\newcommand{\zero}{\{0\}}
+\newcommand{\then}{\rightarrow}
+\newcommand{\nonneg}{\Z^+ \cup \{0\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\union}[2]{\bigcup_{#1}^{#2}}
+\newcommand{\inter}[2]{\bigcap_{#1}^{#2}}
+\newcommand{\openclose}[1]{\left( #1 \right]}
+\newcommand{\closeopen}[1]{\left[ #1 \right)}
+\newcommand{\compo}[2]{#1 e^{i #2}}
+\newcommand{\laplase}{\bigtriangleup}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\braket}[2]{\left< #1 \mid #2 \right>}
+\newcommand{\ketbra}[2]{\left| #1 \right> \left< #2 \right|}
+\newcommand{\ketpsit}{\ket{\psi(t)}}
+\newcommand{\ketphit}{\ket{\phi(t)}}
+\newcommand{\ham}{\mathbf{H}}
+\newcommand{\unx}{\hat{\mathbf{x}}}
+\newcommand{\uny}{\hat{\mathbf{y}}}
+\newcommand{\uns}{\hat{\mathbf{s}}}
+\newcommand{\unr}{\hat{\mathbf{r}}}
+\newcommand{\untheta}{\hat{\boldsymbol\theta}}
+\newcommand{\unphi}{\hat{\boldsymbol\phi}}
+
+\newcommand{\wsnumber}{1}
+\newcommand{\wstopic}{Vectors}
+\pgfplotsset{
+    every linear axis/.append style={
+       axis x line=center,
+       axis y line=center,
+       xlabel={$x$},
+       ylabel={$y$}
+    },
+    every axis plot/.append style={thick,mark=none}
+}
+\tikzset{
+    point/.style={circle,draw,fill,minimum width=0.3ex,inner sep=0pt,outer sep=0pt},
+    every label/.append style={black}
+}
+
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{multirow, multicol}
+\usepackage{tikz}
+\pagestyle{fancy}
+\fancyhead[RO]{Dennis Li}
+\fancyhead[LO]{Analytical Mechanics }
+\usepackage{comment}
+\newif\ifshow
+\showfalse
+
+\ifshow
+  \newenvironment{solution}{\textbf{Solution.}}{}
+\else
+  \excludecomment{solution}
+\fi
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\usepackage{comment}
+
+
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\begin{center}
+\ifshow
+  \textbf{\Large Problem Set 04 Solution}\\
+\else
+  \textbf{\Large Problem Set 04}\\
+\fi
+Instructor \\ Prof. Gabe\\
+\end{center}
+
+\hrule
+
+\vspace{0.2cm}
+
+\section{Moments}
+
+This is a little theory question, the result of which is important to know but the derivation of which I will never test you on (so skip this problem if you are time-pressed, but know the result).
+
+\begin{itemize}
+    \item[KK 7.1] Origins
+    \begin{itemize}
+    \item[(a)] Show that if the total linear momentum of a system of particles is zero, the angular momentum of the system is the same around all origins.
+
+    This is pretty straight forward. If there are no linear momentum, there is no external force in the system. Therefore there is nothing to generate torque, thus the angular momentum is the same around all origins. Since force is defined as
+    \[
+    \mathbf{F}_{net,ext} = \dydx{p}{t}
+    \]
+    \item[(b)] Show that if the total force on a system of particles is zero, the torque on the system is the same around all origins.
+\end{itemize}
+\end{itemize}
+
+There’s a deeper result lurking here regarding the notion of \textit{moments} in physics (moments of mass/inertia, moments of force, electric/magnetic dipole moments, moments of momentum, etc). Ask me about it (i) if you care but (ii) when we’re less pressed for time.
+
+\newpage
+\section{Conserved quantities (or lack thereof)}
+
+These problems are here to flex your understanding of (a) the lab-plus-center-of-mass decomposition of $\mathbf{p}$, $\mathbf{L}$, $KE$ and (b) when quantities are/aren’t conserved (in different frames):
+
+\begin{itemize}
+    \item[T1 3.4]
+        Two hobos, each of mass $m_h$, are standing at one end of a stationary railroad flatcar with frictionless wheels and mass $m_c$. Either hobo can run to the other end of the flatcar and jump off with the same speed $u$ (relative to the car). 
+        \begin{enumerate}
+            \item[(a)] Use conservation of momentum to find the speed of the recoiling car if the two men run and jump simultaneously.
+
+            We know that the total momentum can be modeled as
+            \[
+            \mathbf{L}_{tot,c,init} = \mathbf{L}_{com,c} + \mathbf{L}_{hobo,c,com} = 0
+            \]
+            If we treat the hobo and and flatcar together as one object, then the hobos and the flatcar has a center of mass together. Assume that the flatcar is much more massive than the hobos, the center of mass does not shift drastically due to the movement of the hobos, then we have the following information. 
+            \[
+            \mathbf{L}_{tot,c,init} = \mathbf{L}_{tot,c,fin} = 0
+            \]
+            And we know that the center of mass will have the following momentum
+            \[
+            \mathbf{L}_{com,c} = m_cv_c
+            \]
+            And the momentum in the center of mass frame as
+            \[
+            \mathbf{L}_{hobo,c,com} = 2m_h\paren{u-v_c}
+            \]
+            Since the flatcar is moving against the motion of hobos. This gives us
+            \[
+            2m_h\paren{u-v_c} + m_cv_c = 0
+            \]
+            Solving for $v_c$, we obtain
+            \[
+            v_c = \frac{-2m_hu}{m_c - 2m_h}
+            \]
+            
+
+            
+            \item[(b)] What is it if the second man starts running only after the first has already jumped? Which procedure gives the greater speed to the car? 
+
+            We will use the same analysis as before. We have the same initial condition.
+            \[
+            \mathbf{L}_{tot,c,init} = \mathbf{L}_{com,c} + \mathbf{L}_{hobo,c,com} = 0
+            \]
+            But this time, we will specify two scenario where one hobo left and then 2.
+            \[
+             \mathbf{L}_{tot,c,fin.1} + \mathbf{L}_{tot,c,fin.2} = 0
+            \]
+            Now we first evaluate the situation where one hobo left
+            \[
+            \mathbf{L}_{tot,c,fin.1} = \paren{m_c+m_h}v_1 + 2m_h(u-v_1) = 0
+            \]
+            We solve for the speed of the train after one hobo leaves $v_1$
+            \[
+            v_1 = \frac{-m_hu}{m_c+m_h}
+            \]
+            Now we analyze what happens when the second hobo jumps off
+            \[
+            \mathbf{L}_{tot,c,fin.2} = m_cv_2 + m_h(u-v_2) = m_cv_1
+            \]
+            We can solve for $v_2$, can we will obtain
+            \[
+            v_2 = \frac{-m_hu\paren{2m_c+m_h}}{\paren{m_c + m_h}\paren{m_c-m_h}}
+            \]
+
+            
+        \end{enumerate}
+        
+        \textit{Hint:} The speed $u$ is the speed of either hobo, \textit{relative to the car} just after he has jumped; it has the same value for either man and is the same in parts (a) and (b).
+    \newpage
+    \item [KK2 7.13] A mass $m$ is attached to a post of radius $R$ by a string. Initially it is distance $r$ from the center of the post and is moving tangentially with speed $v_0$.
+
+    \begin{center}
+        \includegraphics[width=0.3\linewidth]{Pictures//PS04/kk7-13.png}
+        \label{fig:kk7.13}
+    \end{center}
+
+    \textbf{Case (a)} The string passes through a hole in the center of the post at the top. The string is gradually shortened by drawing it through the hole.
+    
+    \textbf{Case (b)} The string wraps around the outside of the post.
+    
+    What quantities are conserved in each case? Find the final speed of the mass when it hits the post for each case.
+
+    Consider case $a$. The pivot of circular motion has not changed throughout the process. The only thing that is changed is the radius, or distance to the pivot. This effectively changes the level arm. But since there is no external torque, the angular momentum should be conserved. And we find the velocity as follows
+    \[
+    \mathbf{L}_{c,init} = \mathbf{L}_{c,fin}
+    \]
+    Where
+    \[
+    \mathbf{L}_{c,init} = mv_0R_0 \quad \mathbf{L}_{c,fin}mv_fR_f
+    \]
+    The final speed can be found as
+    \[
+    v_f = v_0\frac{R_0}{R_f}
+    \]
+    This is possible since the tension from the pull aligns with the string, and the following is true
+    \[
+    \mathbf{r}_c \times \mathbf{F}_s = 0
+    \]
+    Since they are parallel, or colinear. This proves that the external torque is zero. 
+
+    Now we consider case $b$.
+
+    If we consider the center of the pole as our pivot, than due to the shortening of the string after each wrap, the angular momentum is not a conserved quantity. But since there is no external forces involved in the system, the kinetic energy should be conserved, and this lead us to
+    \[
+    v_0 = v_f
+    \]
+    
+
+    
+    \newpage
+    \item[KK2 7.41\footnote{This problem has a straightforward solution that is tough to figure out. I did not figure this out on my own the first time I saw it. I \textit{strongly encourage} you to hold out as long as you can before you google a solution, because you’ll remember the answer better.}] This problem utilizes most of the important laws introduced so far and it is worth a substantial effort. The problem is tricky (although not really complicated), so don’t be alarmed if the solution eludes you.
+
+    A plank of length $2L$ leans against a wall. It starts to slip downward without friction. Show that the top of the plank loses contact with the wall when it is at two-thirds of its initial height.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.25\linewidth]{Pictures//PS04/kk7-41.png}
+        \label{fig:kk7.41}
+    \end{figure}
+
+    The center of mass, assuming the plank is homogeneous, is at the center of the plank.
+    \[
+    h_c = L\sin\theta_0
+    \]
+    The gravitational potential energy at this configuration is, assuming it starts off perfectly right up, and starts sliding off
+    \[
+    U_{i} = mgL
+    \]
+    And the force experienced by the plank is felt at the center of mass
+    \[
+    F_g = mg
+    \]
+    The normal force from the wall, we denote as $N_x$ would be
+    \[
+    N_x = F_g\cos\theta
+    \]
+    And from the ground, we will denote as $N_y$,
+    \[
+    N_y = F_g\sin\theta
+    \]
+    Now if we use the corner of the wall as the origin, we can denote the 2 contact point of the plank with the ground and the wall as $x$ and $y$. This gives us the following relationship
+    \[
+    x^2 + y^2 = 4L^2
+    \]
+    This means that the path taken by the center of mass should be circular. Now we want to express the path taken by the center of mass
+    \[
+    x_c = L\cos\theta \quad y_c = L\sin\theta
+    \]
+    Differentiating, we can get the $y$ and $x$ speed and acceleration
+    \[
+    \begin{cases}
+        \dot x_c = -L\sin\theta\dot\theta\\
+        \ddot x_c = -L\cos\theta\dot\theta^2 - L\sin\theta\ddot\theta
+    \end{cases}
+    \]
+    Similarly, we can obtain the expression in the $y$ direction
+    \[
+    \begin{cases}
+        \dot y_c = L\cos\theta\dot\theta\\
+        \ddot y_c = -L\sin\theta\dot\theta^2 + L\cos\theta\ddot\theta
+    \end{cases}
+    \]
+    We know how to find the velocity of center of mass
+    \[
+    v_c^2 = \dot x_c^2 + \dot y_c ^2 
+    \]
+    Using the expression previously obtained, we have
+    \[
+    v_c^2 = L^2\sin^2\theta\dot\theta^2 + L^2\cos^2\theta\dot\theta^2
+    \]
+    This simplifies to
+    \[
+    v_c^2 = L^2\dot\theta^2
+    \]
+    Now we will use the contact point of the plank and the ground as our pivot to determine our torque. The moment of inertia is $I = \frac{4}{3}mL^2$ in this configuration.
+    \[
+    \tau = mgL\cos\theta = I\ddot \theta
+    \]
+    This gives us
+    \[
+    \ddot\theta = \frac{3}{4}\frac{g}{L}\cos\theta
+    \]
+    We know that when the plank is no longer contacting the wall, it will not accelerte in the $x$ direction, this gives us
+    \[
+    \ddot x_c = -L\cos\theta\dot\theta^2 - L\sin\theta\ddot\theta = 0
+    \]
+    This simplifies to
+    \[
+    \dot\theta^2\cos\theta + \ddot\theta\sin\theta=0
+    \]
+    Substituting our previous expression, we have
+    \[
+    \dot\theta^2 =\frac{3g}{4L}\sin\theta
+    \]
+    Now consider conservation of energy
+    \[
+    mgL = mgL\sin\theta + \frac{1}{2}mv_c^2 + \frac{1}{2}I\dot\theta^2
+    \]
+    We know  that $v_c^2 = L^2\dot\theta^2$, and $I = \frac{1}{3}mL^2$ (we consider it as rotating about the ceneter of mass in this case since that is what we are interested), this will give us the expression
+    \[
+    mgL = mgL\sin\theta + \frac{1}{2}mL^2\dot\theta^2 + \frac{1}{6}mL^2\dot\theta^2
+    \]
+    simplifying this expression, we get
+    \[
+    \dot\theta^2 = \frac{3g}{2L}(1-\sin\theta)
+    \]
+    We now have the expression
+    \[
+    \frac{3g}{4L}\sin\theta = \frac{3g}{2L}(1-\sin\theta)
+    \]
+    simplifying, we have
+    \[
+    \frac{1}{2}\sin\theta = 1 - \sin\theta
+    \]
+    Solving for $\sin\theta$, we have
+    \[
+    \sin\theta = \frac{2}{3}
+    \]
+    This shows that the height is two thirds its original length when the plank leaves the wall. 
+\end{itemize}
+
+
+
+
+\newpage
+\section{Backspin}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.3\linewidth]{Pictures//PS04/backspin.png}
+    \caption{Backspin}
+    \label{fig:ps04sec3}
+\end{figure}
+
+A uniform spherical shell (mass $M$, radius $R$) initially moves rightward at speed $v_0$ with a "backspin" angular velocity of magnitude $\omega_0$ about its center. There is friction between the sphere and the floor, and eventually the sphere again comes to rest with no spin. \textbf{Determine the ratio $\frac{v_0}{R\omega_0}$. Your answer should be a pure number!}
+
+\vspace{0.5cm}
+
+If you take more than 2-3 lines to figure out the answer, you're overcomplicating things and missing a crucial idea.
+
+\vspace{0.5cm}
+
+What happens if the ratio is larger than this value? Smaller?
+
+The angular momentum about the center of mass initially after contacting the ground is
+\[
+\mathbf{L}_{c,init} = I\omega 
+\]
+The total momentum is 
+\[
+\mathbf{L}_{tot} = mv_c + I\omega
+\]
+The moment of inertia of a sphere is $I = \frac{2}{3}MR^2$. we have
+\[
+\mathbf{L}_{tot} = mv_0 + \frac{2}{3}MR^2\omega
+\]
+Since the final motion is at rest with no rotation, the change in angular momentum and linear momentum should be
+\[
+\Delta L_R = - \frac{2}{3}MR^2\omega
+\]
+\[
+\Delta p = mv_0
+\]
+Since the friction applies the same force throughout the motion, it applies both torque that changes angular momentum and linear momentum
+\[
+f = \dydx{\mathbf{L}}{t} = \dydx{p}{t}
+\]
+But the force is constant throughout, therefore
+\[
+\Delta \mathbf{L_R} = -\tau t \quad \tau = -fR 
+\]
+And 
+\[
+\Delta \mathbf{p} = -ft
+\]
+And 
+\[
+\frac{\Delta\mathbf{L}_R}{\Delta p} = R
+\]
+Now we use the explicit expression,
+\[
+\frac{\frac{2}{3}MR^2\omega}{mv_0} = R
+\]
+Since the mass are the same, we can do some simplification and get
+\[
+\frac{v_0}{R\omega_0} = \frac{2}{3}
+\]
+If the ratio is bigger, than the ball will keep on going forward, overturning the original back spin. And vice-versa. 
+
+
+
+\newpage
+\section{2 problems, 1 error}
+
+Take a look at problem MT5 9-21. Also look at the \textcolor{blue}{\hyperlink{https://secure-media.collegeboard.org/apc/ap09_frq_physics_c_mech.pdf}{2009 AP Physics C Mechanics Exam}}, Question 3, parts (b) through (d) (same setup as the MT5 problem). Feel free to look at the \textcolor{blue}{\hyperlink{https://secure-media.collegeboard.org/apc/ap09_physics_c_mechanics_sgs.pdf}{AP solutions}}, too.
+
+\begin{enumerate}
+    \item \textbf{Will mechanical energy be conserved in the setup described?}
+
+    Yes it is conserved since no non-conservative force is acting on the rope, i.e. friction. 
+    
+    
+
+    \item \textbf{The answer to the previous question is \textit{“yes”}} (make sure you understand why). Nevertheless, the description of what happens to the rope in the AP solutions and/or the MT5 solutions manual is physically incorrect (i.e., once $y$ in the AP picture has become a non-trivial fraction of the total length $L$ of rope, the situation cannot possibly look like how they drew it).
+    
+    Explain why not, and qualitatively describe what the rope \textit{would} look like after falling a bit.
+    
+    \begin{quote}
+    \textbf{NOTE:} sometimes solutions (or just the problem posed) are unphysical and wrong, even in fancy textbooks or on AP exams. Trust no one and nothing, including me.
+    \end{quote}
+
+    Because the rope is not only accelerating downward, there is a horizontal acceleration too. The rope will not stay perfectly aligned at the turning point of the table. And this equation does not account for the rope shooting away from the table. 
+    
+    \item \textbf{One way to make the problem behave the way MT5 and the AP folks want is to have a \textit{hole} on a frictionless table}, lay the rope on the table, let some initial length $L_0 < L$ hang through, and then let it fall from rest.
+    
+    Suppose we do this. Unless something weird is happening at the hole, energy will be conserved, as intended. 
+    
+    \textit{Apply energy conservation to determine the speed $v$ of the rope once a length $x$ is through the hole.} Actually, just solve for $v^2$. Make sure you’re getting that $v^2 = 0$ when $x = L_0$.
+
+    We know that gravity should behave like
+    \[
+    F_g  = mgy
+    \]
+    If we define mass per length as $\lambda = \frac{m}{L}$, and set the original potential energy as $0$, we have
+    \[
+    0 = -\frac{m}{L}xg(L_0-x)+\frac{1}{2}\frac{m}{L}xv^2
+    \]
+    Simplifying, this gives us
+    \[
+    v^2 = 2g(L_0-x)
+    \]
+    Where $L_0$ is the total length of the rope. 
+
+    \textcolor{blue}{The center of mass where gravity is acting on in our model is not considered in this expression for energy. Therefore the correct expression is not achieved. If we are considering the correct expression where the center of mass of the rope is taken into account, we should be able to establish
+    \[
+    v^2(t) = \frac{g}{L}\paren{x^2 - L_0^2}
+    \]}
+    
+    \item \textbf{And now, to make Juan happy… determine $x(t)$.} The simplest way to do this is to think of your answer to the previous part as giving you a function $v^2(x)$. Differentiate that equation with respect to $x$ and apply Taylor’s “$dvdx$ trick” in reverse.
+    
+    You should end up with a 2nd order ODE for $x(t)$ that looks like the SHO ODE with the wrong sign. Instead of oscillatory functions, the solution will be growing and decaying exponentials. Determine your integration constants by matching to the solution to $v$ from part (c), and a hyperbolic cosine should emerge.
+
+    We can write  acceleration as follows
+    \[
+    \dydx{}{x}\paren{
+    v^2 = 2g(L_0-x)
+    }
+    \]
+    This gives us
+    \[
+    2v\dydx{v}{x} = -2g
+    \]
+    Consequently
+    \[
+    v\text{d}v = -g\text{d}x
+    \]
+    If we integrate both side, we have
+    \[
+    \frac{v^2}{2} = -gx
+    \]
+
+    \textcolor{blue}{With the newly esatblished formula for center of mass, we can differentiate the formula obtained and get
+    \[
+    2v\dydx{v}{x} = \frac{2g}{L}x
+    \]
+    We can cancel some terms can obtain
+    \[
+    v\dydx{v}{x} = \frac{g}{L}x
+    \]
+    We know that the LHS of the equation is just the acceleration, therefore
+    \[
+    \ddot{x} = \frac{g}{L}x
+    \]
+    Let us define $k^2 = \frac{g}{L}$, we have
+    \[
+    \ddot{x} -k^2x = 0
+    \]
+    This differential equation has an obvious solution, and that is
+    \[
+    x(t) = c_1e^{-kx}+c_2e^{kx}
+    \]
+    And we know that the initial speed of the rope is 0, or $\dot x(0) = 0$. Furthermore, we know that the initial length is simply $L_0$. This gives us
+    \[
+    L_0 = c_1 + c_2
+    \]
+    \[
+    0 = -kc_1 + kc_2
+    \]
+    Which means
+    \[
+    c_1 = c_2
+    \]
+    With the first equation, we have obtained that
+    \[
+    c_1 = c_2 = \frac{L_0}{2}
+    \]
+    Our solution becomes
+    \[
+    x(t) = \frac{L_0}{2}\paren{e^{-kx}+e^{kx}}
+    \]
+    We can see easily that this is a hyperbolic cosine function.
+    \[
+    x(t) = L_0\cosh kx,\quad k^2 = \frac{g}{L}
+    \]
+    With center of mass properly considered, we have arrived at the desired solution. }
+    
+
+\end{enumerate}
+
+\newpage
+
+\section{Some collision theory}
+
+This problem asks you to show that in an elastic 2D collision between two equal mass objects, one of which is initially at rest, the post-collision velocity vectors of the particles must be perpendicular (i.e. the particles move off at right angles to each other).
+
+\begin{itemize}
+    \item[T1 3.5] Many applications of conservation of momentum involve conservation of energy as well, and we haven’t yet begun our discussion of energy. Nevertheless, you know enough about energy from your introductory physics course to handle some problems of this type. Here is one elegant example: 
+
+    An \textit{elastic collision} between two bodies is defined as a collision in which the total kinetic energy of the two bodies after the collision is the same as that before. (A familiar example is the collision between two billiard balls, which generally lose extremely little of their total kinetic energy.) Consider an elastic collision between two equal mass bodies, one of which is initially at rest. Let their velocities be $\vec{v}_1$ and $\vec{v}_2 = 0$ before the collision, and $\vec{v}_1'$ and $\vec{v}_2'$ after. Write down the vector equation representing conservation of momentum and the scalar equation which expresses that the collision is elastic. Use these to prove that the angle between $\vec{v}_1'$ and $\vec{v}_2'$ is $90^\circ$. 
+    
+    This result was important in the history of atomic and nuclear physics: that two bodies emerged from a collision traveling on perpendicular paths was strongly suggestive that they had equal mass and had undergone an elastic collision.
+    
+\end{itemize}
+
+This is easy to demonstrate on a pool table or an air-hockey track.
+
+\subsubsection*{Two comments:}
+\begin{enumerate}
+    \item Try to work out the problem explicitly using vectors and dot products (it’s both faster, and it will give you practice working with vectors directly — as opposed to their magnitudes or components);
+    
+    \item Conceivably, the result of this proof can be leveraged through boosting. In 2D elastic collisions between equal mass objects, the frame in which one of the particles is at rest might be useful, since in this frame knowing outgoing angle $\theta_1$ immediately tells you $\theta_2$ (it’s just $\theta_2 = 90^\circ - \theta_1$). Just an observation.
+\end{enumerate}
+
+To prove that the velocities $\vec{v}_1'$ and $\vec{v}_2'$ are perpendicular after an elastic collision between two equal-mass bodies (with one initially at rest), we will use the conservation of momentum and conservation of kinetic energy.
+
+\subsection*{Conservation of Momentum}
+
+Let the mass of each body be $m$. Before the collision, the velocities are $\vec{v}_1$ and $\vec{v}_2 = \vec{0}$. After the collision, the velocities are $\vec{v}_1'$ and $\vec{v}_2'$. Conservation of momentum gives
+
+\[
+m\vec{v}_1 + m\vec{0} = m\vec{v}_1' + m\vec{v}_2' \implies \vec{v}_1 = \vec{v}_1' + \vec{v}_2'
+\]
+
+
+Since the collision is elastic, the total kinetic energy is conserved
+
+\[
+\frac{1}{2} m v_1^2 = \frac{1}{2} m {v_1'}^2 + \frac{1}{2} m {v_2'}^2 \implies v_1^2 = {v_1'}^2 + {v_2'}^2
+\]
+
+
+From the conservation of momentum
+
+\[
+\vec{v}_1 = \vec{v}_1' + \vec{v}_2' \implies \vec{v}_1 - \vec{v}_1' = \vec{v}_2'
+\]
+
+Take the dot product of both sides with themselves
+
+\[
+(\vec{v}_1 - \vec{v}_1') \cdot (\vec{v}_1 - \vec{v}_1') = \vec{v}_2' \cdot \vec{v}_2'
+\]
+
+Simplify the left side
+
+\[
+(\vec{v}_1 - \vec{v}_1')^2 = v_1^2 - 2\vec{v}_1 \cdot \vec{v}_1' + {v_1'}^2
+\]
+
+So we have
+
+\[
+v_1^2 - 2\vec{v}_1 \cdot \vec{v}_1' + {v_1'}^2 = {v_2'}^2
+\]
+
+From the conservation of kinetic energy, we have
+
+\[
+v_1^2 = {v_1'}^2 + {v_2'}^2
+\]
+
+Substitute ${v_2'}^2$ from the kinetic energy equation into the previous equation
+
+\[
+v_1^2 - 2\vec{v}_1 \cdot \vec{v}_1' + {v_1'}^2 = v_1^2 - {v_1'}^2
+\]
+
+Subtract $v_1^2$ from both sides
+
+\[
+-2\vec{v}_1 \cdot \vec{v}_1' + {v_1'}^2 = -{v_1'}^2
+\]
+
+Simplify
+
+\[
+-2\vec{v}_1 \cdot \vec{v}_1' + {v_1'}^2 = -{v_1'}^2 \implies -2\vec{v}_1 \cdot \vec{v}_1' = -2{v_1'}^2
+\]
+
+Divide both sides by $-2$
+
+\[
+\vec{v}_1 \cdot \vec{v}_1' = {v_1'}^2
+\]
+
+But from conservation of momentum, $\vec{v}_1 = \vec{v}_1' + \vec{v}_2'$, so
+
+\[
+\vec{v}_1 \cdot \vec{v}_1' = (\vec{v}_1' + \vec{v}_2') \cdot \vec{v}_1' = {v_1'}^2 + \vec{v}_1' \cdot \vec{v}_2'
+\]
+
+Therefore
+
+\[
+{v_1'}^2 = {v_1'}^2 + \vec{v}_1' \cdot \vec{v}_2' \implies \vec{v}_1' \cdot \vec{v}_2' = 0
+\]
+
+\newpage
+
+\section{Collisions}
+
+The following problems feature a variety of collisions/explosions.
+
+\begin{itemize}
+    \item[KK2 4.5] A circus acrobat of mass $M$ leaps straight up with initial velocity $v_0$ from a trampoline. As he rises up, he takes a trained monkey of mass $m$ off a perch at a height $h$ above the trampoline.
+
+What is the maximum height attained by the pair?
+
+    \item[MT5 9-10] A cannon in a fort overlooking the ocean fires a shell of mass $M$ at an elevation angle $\theta$ and muzzle velocity $v_0$. At the highest point, the shell explodes into two fragments (masses $m_1 + m_2 = M$), with an additional energy $E$, traveling in the original horizontal direction. 
+
+    Find the distance separating the two fragments when they land in the ocean. For simplicity, assume the cannon is at sea level.
+    
+    \item[KK2 6.9] (this problem takes like zero algebra and almost no calculation if you leverage the c.o.m. frame). Particle A of mass $m$ has initial velocity $v_0$. After colliding with particle B of mass $2m$ initially at rest, the particles follow the paths shown in the right-hand sketch. 
+        \[
+        \includegraphics[width=0.5\linewidth]{Pictures//PS04/kk2-6-9.png}
+        \]
+
+
+    Find $\theta$.
+    
+    \item [MT5 9-28] (ditto — think about how things need to look in the c.o.m. frame in order to lose as much KE as possible in the LAB frame) A particle of mass $m_1$ elastically collides with a particle of mass $m_2$ at rest. What is the maximum fraction of kinetic energy loss for $m_1$? Describe the reaction.
+\end{itemize}
+
+It is generally (but not necessarily always) to your benefit to shift to the center-of-mass frame (and occasionally to other frames). In particular, you are practically guaranteed to win by going to the c.o.m. frame in the following circumstances (there are others, too, but these occur frequently):
+\begin{itemize}
+    \item the kinematics look simpler in the c.o.m. frame;
+    \item two-particle 2D non-sticky collisions between unequal mass particles, \textit{especially} when the collision is elastic (the algebra in the lab frame is typically a mess).
+\end{itemize}
+
+\newpage
+
+\section{"Stick"-y sticky collisions}
+
+Let’s do a variety of maximally inelastic (sticky) collisions involving sticks (so “stick”-y — see what I did there?). Everything below takes place on a frictionless horizontal tabletop.
+
+\begin{itemize}
+    \item (This is a variant of the problem we started in class). A thin rod of mass $M$ and length $2\ell$ lies at rest on the $y$-axis, with its ends at $(x = 0, y = \pm\ell)$. A particle of mass $m$ moves along the line $y = -\ell$ with initial velocity $\mathbf{v_0} = v_0\hat{\mathbf{x}}$. At $t = 0$, it strikes the end of the rod and sticks to it. Let $\mathbf{R}(t) \equiv X(t)\hat{\mathbf{x}} + Y(t)\hat{\mathbf{y}}$ denote the position of end of the rod without the particle (so $\mathbf{R}(0) \equiv 0\hat{\mathbf{x}} + \ell\hat{\mathbf{y}}$). Determine $\mathbf{R}(t)$ for all $t \geq 0$.
+    
+    \item Same problem, but now make the rod a dumbbell as follows: massless rod of length $2\ell$ joining two point-masses, each of mass $M/2$.
+\end{itemize}
+
+\textcolor{blue}{\textbf{Correction}.  The original approach features an inconsistent treatment of center of mass. We will re-approach this problem with a better defined setup. We first want to properly define the center of mass. We will use the center of mass of the rod before collision as the origin. And define the distance of the center of mass from the tip of the rod as
+\[
+D_b = l
+\]
+This is before any collision happened. We will use $M$ to denote the mass of the rod and $m$ to denote the mass of the object colliding. The new center of mass after the collision has happened can be expressed as
+\[
+D_a = l + \frac{ml}{M+m}
+\]
+This expression can be simplified to
+\[
+D = \frac{2m+M}{m+M}l
+\]
+We know that the center of mass will be moving in a straightline since the system of the rod and the blob is not subjecting to external torque or force after collision has happened. Therefore we will have the trajectory of the center of mass as
+\[
+\mathbf{R}_{com} = v_xt\unx
+\]
+We can calculate $v_x$ easily with conservation of linear momentum. The total linear momentum of the system is given by
+\[
+\mathbf{p}_{blob} = mv_0\unx
+\]
+And our new linear momentum after collision is simply
+\[
+\mathbf{p}_{blob+rod} = mv_0\unx = (M_+m)v_x\unx
+\]
+This provide us the linear velocity of the rod after collision, and therefore the trajectory of the center of mass.
+\[
+\mathbf{R}_{com} = \frac{mv_0t}{M+m}\unx
+\]
+We know that the rotation will be about the center of mass, and we can define circular motion easily as
+\[
+\mathbf{R}_{\circ} = D\cos\paren{\omega t + \frac{\pi}{2}}\unx + D\sin\paren{\omega t + \frac{\pi}{2}}\uny
+\]
+The phase is shifted due the the initial position of the rod being upright. Now, we simply need to find the angular frequency. We know that the angular momentum of the system is given by
+\[
+\mathbf{L} = I\omega
+\]
+In our case, the total angular momentum about the new center of mass before collision is
+\[
+\mathbf{L}_{blob} = mv_0(2l-D) = mv_0\paren{l - \frac{ml}{M+m}}
+\]
+Where $2l-D$ is the distance the blob has from the pivot, or center of mass. Now we only need the moment of inertia of the system. This can be obtained by
+\[
+I = I_{rod} + I_{blob}
+\]
+This can be done with parallel axis theorem, and we obtain
+\[
+I = \frac{1}{3}Ml^2 + m(2l-D)^2 = \frac{1}{3}Ml^2  + m\paren{l - \frac{ml}{M+m}}^2
+\]
+Therefore the angular frequency can be obtained by the expression above. Shove this $\omega$ in and we have
+\[
+\mathbf{R}(t) = \sqbkt{D\cos\paren{\omega t + \frac{\pi}{2}} + \frac{mv_0t}{M+m}\unx}\unx + D\sin\paren{\omega t + \frac{\pi}{2}}\uny
+\]
+The dumbbell only changes the moment of inertia, and consequently our angular frequency. The center of mass remains the same. Our new moment of inertia as obtained with the parallel axis theorem is
+\[
+I = 2Ml^2 + m(2l-D)^2
+\]
+since the center of rotation is the center of mass after collision. After computing the angular frequency $\omega$ with the same approach, we can get the correct expression similar to that of above. 
+}
+
+
+\section*{Solution}
+
+
+A thin rod of mass $M$ and length $2\ell$ lies at rest along the $y$-axis with ends at $(0, \ell)$ and $(0, -\ell)$. A particle of mass $m$ moves along the line $y = -\ell$ with initial velocity $\mathbf{v}_0 = v_0 \hat{\mathbf{x}}$ and strikes the end of the rod at $y = -\ell$, sticking to it
+
+Our goal is to find the position $\mathbf{R}(t) = X(t)\hat{\mathbf{x}} + Y(t)\hat{\mathbf{y}}$ of the other end of the rod (initially at $y = \ell$) for all $t \geq 0$
+
+
+Before the collision:
+\[
+\text{Total momentum} = m v_0 \hat{\mathbf{x}} + M \times \mathbf{0} = m v_0 \hat{\mathbf{x}}
+\]
+
+After the collision, the combined system (rod + particle) moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$
+\[
+(m + M)\mathbf{V}_{\text{cm}} = m v_0 \hat{\mathbf{x}} \implies \mathbf{V}_{\text{cm}} = \frac{m v_0}{M + m} \hat{\mathbf{x}}
+\]
+
+Calculate angular momentum about the center of mass just after the collision
+
+
+The $y$-coordinate of the center of mass is
+\[
+y_{\text{cm}} = \frac{M \times 0 + m \times (-\ell)}{M + m} = -\frac{m \ell}{M + m}
+\]
+
+
+The particle's position relative to the center of mass
+\[
+\Delta \mathbf{r}_p = \mathbf{r}_p - \mathbf{r}_{\text{cm}} = (0 \hat{\mathbf{x}} - \ell \hat{\mathbf{y}}) - (0 \hat{\mathbf{x}} - \tfrac{m \ell}{M + m} \hat{\mathbf{y}}) = -\ell \left( \frac{M}{M + m} \right) \hat{\mathbf{y}}
+\]
+
+The initial angular momentum about the center of mass is
+\[
+\mathbf{L}_{\text{initial}} = \Delta \mathbf{r}_p \times m \mathbf{v}_0 = -\ell \left( \frac{M}{M + m} \right) \hat{\mathbf{y}} \times m v_0 \hat{\mathbf{x}} = \frac{M m \ell v_0}{M + m} \hat{\mathbf{z}}
+\]
+
+The moment of inertia of the rod about its own center is
+\[
+I_{\text{rod}} = \frac{1}{12} M (2\ell)^2 = \frac{1}{3} M \ell^2
+\]
+
+Using the parallel axis theorem (as used in a question earlier before), the rod's moment of inertia about the new center of mass is
+\[
+I_{\text{rod, cm}} = I_{\text{rod}} + M \left( \frac{m \ell}{M + m} \right)^2 = \frac{1}{3} M \ell^2 + \frac{M m^2 \ell^2}{(M + m)^2}
+\]
+
+The particle's moment of inertia about the center of mass is
+\[
+I_{\text{particle}} = m \left( \ell \left( \frac{M}{M + m} \right) \right)^2 = \frac{M^2 m \ell^2}{(M + m)^2}
+\]
+
+Total moment of inertia
+\[
+I_{\text{cm}} = I_{\text{rod, cm}} + I_{\text{particle}} = \frac{1}{3} M \ell^2 + \frac{M m^2 \ell^2}{(M + m)^2} + \frac{M^2 m \ell^2}{(M + m)^2}
+\]
+
+Simplify the last two terms
+\[
+\frac{M m^2 \ell^2 + M^2 m \ell^2}{(M + m)^2} = \frac{M m \ell^2 (M + m)}{(M + m)^2} = \frac{M m \ell^2}{M + m}
+\]
+
+Thus,
+\[
+I_{\text{cm}} = \frac{1}{3} M \ell^2 + \frac{M m \ell^2}{M + m}
+\]
+
+
+Conservation of angular momentum
+\[
+\mathbf{L}_{\text{initial}} = I_{\text{cm}} \omega \hat{\mathbf{z}} \implies \omega = \frac{M m \ell v_0}{(M + m) I_{\text{cm}}}
+\]
+
+
+The center-of-mass position as a function of time
+\[
+\mathbf{r}_{\text{cm}}(t) = \mathbf{r}_{\text{cm}}(0) + \mathbf{V}_{\text{cm}} t = \left( 0 + \frac{m v_0}{M + m} t \right) \hat{\mathbf{x}} - \frac{m \ell}{M + m} \hat{\mathbf{y}}
+\]
+
+Distance from center of mass to the end at $y = \ell$
+\[
+d_{\text{end}} = \ell - y_{\text{cm}} = \ell + \frac{m \ell}{M + m} = \ell \left( \frac{M + m}{M + m} + \frac{m}{M + m} \right) = \ell \left( \frac{M + 2m}{M + m} \right)
+\]
+
+The position of the end of the rod is
+\[
+\mathbf{R}(t) = \mathbf{r}_{\text{cm}}(t) + d_{\text{end}} \left( -\sin(\omega t) \hat{\mathbf{x}} + \cos(\omega t) \hat{\mathbf{y}} \right)
+\]
+
+
+At $t = 0$, the end of the rod is at
+\[
+\mathbf{R}(0) = \mathbf{r}_{\text{cm}}(0) + d_{\text{end}} \left( -\sin(\phi) \hat{\mathbf{x}} + \cos(\phi) \hat{\mathbf{y}} \right)
+\]
+
+Given that $\mathbf{R}(0) = 0 \hat{\mathbf{x}} + \ell \hat{\mathbf{y}}$, we have
+\begin{align*}
+0 &= \frac{m v_0}{M + m} \times 0 - d_{\text{end}} \sin(\phi)\\
+\ell &= -\frac{m \ell}{M + m} + d_{\text{end}} \cos(\phi)
+\end{align*}
+
+From the first equation
+\[
+\sin(\phi) = 0 \implies \phi = 0 \text{ or } \phi = \pi
+\]
+
+From the second equation, using $\cos(0) = 1$
+\[
+\ell = -\frac{m \ell}{M + m} + d_{\text{end}}
+\]
+
+But since $d_{\text{end}} = \ell + \frac{m \ell}{M + m}$, substituting
+\[
+\ell = -\frac{m \ell}{M + m} + \ell + \frac{m \ell}{M + m} \implies \ell = \ell
+\]
+
+Thus, $\phi = 0$ is consistent, and the motion of the end is
+\[
+\mathbf{R}(t) = \mathbf{r}_{\text{cm}}(t) + d_{\text{end}} \left( -\sin(\omega t) \hat{\mathbf{x}} + \cos(\omega t) \hat{\mathbf{y}} \right)
+\]
+
+The position $\mathbf{R}(t)$ for $t \geq 0$ is
+\[
+\begin{aligned}
+X(t) &= \frac{m v_0}{M + m} t - d_{\text{end}} \sin(\omega t) \\
+Y(t) &= -\frac{m \ell}{M + m} + d_{\text{end}} \cos(\omega t)
+\end{aligned}
+\]
+
+Where
+\[
+d_{\text{end}} = \ell \left( \frac{M + 2m}{M + m} \right), \quad \omega = \frac{M m \ell v_0}{(M + m) I_{\text{cm}}}, \quad I_{\text{cm}} = \frac{1}{3} M \ell^2 + \frac{M m \ell^2}{M + m}
+\]
+
+\subsection*{Part (b): Dumbbell}
+
+For the dumbbell, the rod is massless, and two point masses of $M/2$ are at $y = \ell$ and $y = -\ell$
+
+Similar to part (a)
+\[
+\mathbf{V}_{\text{cm}} = \frac{m v_0}{M + m} \hat{\mathbf{x}}
+\]
+
+The center of mass is at
+\[
+y_{\text{cm}} = \frac{\tfrac{M}{2} \times \ell + \tfrac{M}{2} \times (-\ell) + m \times (-\ell)}{M + m} = -\frac{m \ell}{M + m}.
+\]
+
+Angular momentum before collision
+\[
+\mathbf{L}_{\text{initial}} = \left( -\ell + \frac{m \ell}{M + m} \right) m v_0 \hat{\mathbf{z}} = \frac{M m \ell v_0}{M + m} \hat{\mathbf{z}}.
+\]
+
+Moment of inertia about the center of mass
+\[
+I_{\text{cm}} = \left( \tfrac{M}{2} \left( \ell + \frac{m \ell}{M + m} \right)^2 + \tfrac{M}{2} \left( \ell - \frac{m \ell}{M + m} \right)^2 + m \left( \ell \left( \frac{M}{M + m} \right) \right)^2 \right)
+\]
+
+Simplify $I_{\text{cm}}$ (left as an exercise due to complexity)
+
+
+After simplifying $I_{\text{cm}}$, the position $\mathbf{R}(t)$ is similar to part (a)
+\[
+\begin{aligned}
+X(t) &= \frac{m v_0}{M + m} t - d_{\text{end}} \sin(\omega t) \\
+Y(t) &= -\frac{m \ell}{M + m} + d_{\text{end}} \cos(\omega t)
+\end{aligned}
+\]
+Where $d_{\text{end}}$, $\omega$, and $I_{\text{cm}}$ are calculated based on the dumbbell configuration.
+
+
+
+
+\end{document}
